@@ -10,7 +10,21 @@ window.onload = function() {
 };
 
 // load in the needed json files
-d3.queue()
-	.defer(d3.json, 'Food_supply.json')
-	.defer(d3.json, 'Colorectal_cancer.json')
-	.await(make_my_project);
+queue()
+	.defer(d3.json, '../data/food_supply.json')
+	.defer(d3.json, '../data/patients.json')
+	.defer(d3.json, '../data/obesity.json')
+	.defer(d3.json, '../data/deceased.json')
+	.await(MakeMyProject);
+
+function MakeMyProject(error, food_supply, patients, obesity, deceased) {
+  if (error) throw error;
+
+  console.log(food_supply)
+  console.log(patients)
+  console.log(obesity)
+  console.log(deceased)
+
+
+ }  
+

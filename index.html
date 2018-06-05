@@ -2,16 +2,21 @@
   <head>
     <title>Programmeerproject 2018</title>
     <div id="tooltip"></div>
-    <script src="https://d3js.org/d3.v4.min.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="https://d3js.org/topojson.v2.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
     <script type ="text/javascript" src ="javascript/project.js"/></script>
+	<script src="/javascript/datamaps.world.min.js"></script>
+    <div id="container" style="position: relative; width: 700px; height: 450px;"></div>
+    <script>
+    	var map = new Datamap({element: document.getElementById('container')});
+    </script>
     <link rel="stylesheet" href="css/project.css" type="text/css">
-    </head>
+  
   </head>
 
-  <body style ="font-family:verdana">
+  <body>
     <h1>Programmeerproject 2018</h1>
     <h3>Sylvie Langhout</h3>
+    <h4>10792368</h4>
   </body>
 </html>

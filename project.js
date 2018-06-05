@@ -13,9 +13,9 @@ window.onload = function() {
 d3.queue()
 	.defer(d3.json, '../data/Food_supply.json')
 	.defer(d3.json, '../data/Colorectal_cancer.json')
-	.await(make_my_project);
+	.await(MakeMyProject);
 
-function make_my_project(error, Food_supply, Colorectal_cancer) {
+function MakeMyProject(error, Food_supply, Colorectal_cancer) {
   if (error) throw error;
 
   console.log(Food_supply)
