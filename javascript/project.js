@@ -7,16 +7,16 @@
 window.onload = function() {
 
   console.log('Lets GO GO GO!')
-};
 
 // load in the needed json files
-d3.queue()
+queue()
 	.defer(d3.json, '../data/food_supply.json')
 	.defer(d3.json, '../data/patients.json')
 	.defer(d3.json, '../data/obesity.json')
 	.defer(d3.json, '../data/deceased.json')
 	.await(MakeMyProject);
 
+};
 function MakeMyProject(error, food_supply, patients, obesity, deceased) {
   if (error) throw error;
 
@@ -27,4 +27,3 @@ function MakeMyProject(error, food_supply, patients, obesity, deceased) {
 
 
  }  
-
