@@ -10,17 +10,17 @@ window.onload = function() {
 
 // load in the needed json files
 queue()
-	.defer(d3.json, '../data/food_supply.json')
-	.defer(d3.json, '../data/patients.json')
-	.defer(d3.json, '../data/obesity.json')
-	.defer(d3.json, '../data/deceased.json')
+	.defer(d3.json, '/data/Food_supply.json')
+	.defer(d3.json, '/data/patients.json')
+	.defer(d3.json, '/data/obesity.json')
+	.defer(d3.json, '/data/deceased.json')
 	.await(MakeMyProject);
 
 };
-function MakeMyProject(error, food_supply, patients, obesity, deceased) {
+function MakeMyProject(error, Food_supply, patients, obesity, deceased) {
   if (error) throw error;
 
-  console.log(food_supply)
+  console.log(Food_supply)
   console.log(patients)
   console.log(obesity)
   console.log(deceased)
