@@ -1,12 +1,22 @@
-For this deadline, you must prove that you have access to the data in a usable format!
+#DESIGN DOCUMENT
+Sylvie Langhout - 10792368
 
-Some parts that you should describe here:
+# DATA SOURCES:
+ [OECD](http://stats.oecd.org/#)
+ - Colorectal cancer statistics, incidence per 100.000 citizens per country for the years 2000, 2002, 2008, 2012. This can be displayed in the world map, showing the difference for the countries and where the colorectal cancer prevalence is highest. 
+ - Obesity statistics, % of the population. This can be displayed against the colorectal cancer incidence, showing if people who eat bad (obese) in a country also have more people with colorectal cancer. Then you can click on a country and display what the food supply in that country is like and what people eat. 
+ - Food supply, the sugar supply, fat supply, protein supply, vegetable supply and fruit supply for the countries. From this I can calculate what the average countries' supply is and set this in the bullet chart to compare the different countries to eachother. 
+ - Colorectal cancer mortality, number of deaths female, male and both for the years 2000 - 2015. This can then be displayed in a population pyramid seeing the change over the years. 
 
-a list of data sources if you will get data from an external source, including information on how your are going to filter and transform the data for your project
 
-a diagram with an overview of the technical components of your app (visualizations, scraper etc etc)
+ CSV files, converted to JSON by convertCSV2JSON.py, file made in dataprocessing. All data files can be found in the folder data. I will extract the necessary data from these files, the necessary data is described above. 
 
-as well as descriptions of each of the components and what you need to implement these
+# TECHNICAL COMPONENTS:
 
-a list of APIs or D3 plugins that you will be using to provide functionality in your app
+![](doc/chart_visualistion.png)
+
+
+# FUNCTIONS:
+
+![](doc/functions.png)
 

@@ -6,11 +6,11 @@
 
 window.onload = function() {
 
-  console.log('Lets GO!')
+  console.log('Lets GO GO GO!')
 };
 
 // load in the needed json files
-queue()
+d3.queue()
 	.defer(d3.json, '../data/food_supply.json')
 	.defer(d3.json, '../data/patients.json')
 	.defer(d3.json, '../data/obesity.json')
