@@ -12,7 +12,7 @@ window.onload = function() {
 queue()
 	.defer(d3.json, '/Programmeerproject/data/Food_supply.json')
 	.defer(d3.json, '/Programmeerproject/data/patients.json')
-	.defer(d3.json, '/Programmeerprojectdata/obesity.json')
+	.defer(d3.json, '/Programmeerproject/data/obesity.json')
 	.defer(d3.json, '/Programmeerproject/data/deceased.json')
 	.await(MakeMyProject);
 
