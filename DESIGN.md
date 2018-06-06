@@ -1,7 +1,9 @@
-#DESIGN DOCUMENT
+#DESIGN DOCUMENT:
+
 Sylvie Langhout - 10792368
 
 # DATA SOURCES:
+
  [OECD](http://stats.oecd.org/#)
  - Colorectal cancer statistics, incidence per 100.000 citizens per country for the years 2000, 2002, 2008, 2012. This can be displayed in the world map, showing the difference for the countries and where the colorectal cancer prevalence is highest. 
  - Obesity statistics, % of the population. This can be displayed against the colorectal cancer incidence, showing if people who eat bad (obese) in a country also have more people with colorectal cancer. Then you can click on a country and display what the food supply in that country is like and what people eat. 
