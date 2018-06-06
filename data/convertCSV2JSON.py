@@ -24,8 +24,6 @@ else:
 	jsonfile = open(jsonfilename, 'w')
 
 	# set fieldnames
-	# fieldnames = ("Name", "City","State","Country")
-	# fieldnames = ("address","city","country", "name", "province")
 	fieldnames = ("VAR", "Variable","UNIT",	"Measure","COU","Country","YEA","Year", "Value", "Flag Codes",	"Flags")
 	data = csv.DictReader(csvfile, fieldnames)
 

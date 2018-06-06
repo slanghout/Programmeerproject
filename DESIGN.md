@@ -22,6 +22,8 @@ Programmeerproject Minor Programmeren
 
 ![](doc/chart_visualistion.png)
 
+A world map will be shown to display the number of colorectal cancer patients per 100.000, with next to it the scatterplot displaying colorectal cancer patients against obesity in a country to show a possible correlation between the two which might suggest bad eating. If you click on a dot a bullet chart will show what the food supply in a specific country are vs what the average is. 
+
 
 # Functions:
 

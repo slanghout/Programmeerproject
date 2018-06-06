@@ -10,10 +10,10 @@ window.onload = function() {
 
 // load in the needed json files
 queue()
-	.defer(d3.json, '../Programmeerproject/data/Food_supply.json')
-	.defer(d3.json, '../Programmeerproject/data/patients.json')
-	.defer(d3.json, '../Programmeerproject/data/obesity.json')
-	.defer(d3.json, '../Programmeerproject/data/deceased.json')
+	.defer(d3.json, '/Programmeerproject/data/Food_supply.json')
+	.defer(d3.json, '/Programmeerproject/data/patients.json')
+	.defer(d3.json, '/Programmeerprojectdata/obesity.json')
+	.defer(d3.json, '/Programmeerproject/data/deceased.json')
 	.await(MakeMyProject);
 
 };
@@ -25,5 +25,6 @@ function MakeMyProject(error, Food_supply, patients, obesity, deceased) {
   console.log(obesity)
   console.log(deceased)
 
+  MakeMap()
 
  }  
