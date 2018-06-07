@@ -14,11 +14,6 @@ queue()
 	.defer(d3.json, 'data/patients.json')
 	.defer(d3.json, 'data/obesity.json')
 	.defer(d3.json, 'data/deceased.json')
-// voor de github laden
-  // .defer(d3.json, '/Programmeerproject/data/Food_supply.json')
-  // .defer(d3.json, '/Programmeerproject/data/patients.json')
-  // .defer(d3.json, '/Programmeerproject/data/obesity.json')
-  // .defer(d3.json, '/Programmeerproject/data/deceased.json')
 	.await(MakeMyProject);
 
 };
@@ -29,7 +24,6 @@ function MakeMyProject(error, Food_supply, patients, obesity, deceased) {
   console.log(patients)
   console.log(obesity)
   console.log(deceased)
-
   MakeMap()
 
  }  

@@ -3,7 +3,7 @@
 Sylvie Langhout
 10792368
 
-[Pages](https://slanghout.github.io/Programmeerproject/)
+[My Project](https://slanghout.github.io/Programmeerproject/)
 
 # My idea
 This datavisualisation will display colorectal cancer frequence against fat, protein and sugar food consumption. This can show what type of food consuption may lead to a higher chance of colorectal cancer. 
