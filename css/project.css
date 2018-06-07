@@ -1,3 +1,13 @@
 body{
 	font-family: sans-serif;
 }
+.jumbotron {
+height: 200px;
+font-family: sans-serif;
+
+}
+h5{
+	font-style: italic; 
+}
+
+

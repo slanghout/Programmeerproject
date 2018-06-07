@@ -20,10 +20,10 @@ queue()
 function MakeMyProject(error, Food_supply, patients, obesity, deceased) {
   if (error) throw error;
 
-  console.log(Food_supply)
-  console.log(patients)
-  console.log(obesity)
-  console.log(deceased)
+  console.log(Food_supply[201])
+  console.log(patients[345])
+  console.log(obesity[654])
+  console.log(deceased[234])
   MakeMap()
 
  }  
