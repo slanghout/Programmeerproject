@@ -4,3 +4,7 @@
 - Linking through pages function
 - Data is loaded in the script page
 - Imported world map
+
+# Day 5
+
+- Loaded in data for cancer incidence in map

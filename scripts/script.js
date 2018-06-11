@@ -4,6 +4,7 @@
 // project.js
 // File with the functions for D3 Map with charts
 
+// import {MakeMap} from 'make_map'
 window.onload = function() {
 
   console.log('Lets GO GO GO!')
@@ -20,10 +21,51 @@ queue()
 function MakeMyProject(error, Food_supply, patients, obesity, deceased) {
   if (error) throw error;
 
-  console.log(Food_supply[201])
-  console.log(patients[345])
-  console.log(obesity[654])
-  console.log(deceased[234])
-  MakeMap()
+  all_info = []
+  male_info = []
+  female_info = []
+
+  data_options = ["All", "Male", "Female"]
+  patients_lenght = patients.length
+
+  for (var element = 0; element < patients_lenght; element ++)
+    {
+      if (patients[element].YEA == "2012")
+      {
+        if (patients[element].Measure == "Incidence per 100 000 population")
+        {
+          all_info.push(patients[element])
+        }
+      }
+    }
+
+    for (var element = 0; element < patients_lenght; element ++)
+    {
+      if (patients[element].YEA == "2012")
+      {
+        if (patients[element].Measure == "Incidence per 100 000 females")
+        {
+          female_info.push(patients[element])
+        }
+      }
+    }
+    for (var element = 0; element < patients_lenght; element ++)
+    {
+      if (patients[element].YEA == "2012")
+      {
+        if (patients[element].Measure == "Incidence per 100 000 males")
+        {
+          male_info.push(patients[element])
+        }
+      }
+    }
+
+    patient_info = [all_info, male_info, female_info]
+
+  start_map = map_data(patient_info, 0)
+  make_map(start_map)
+
+
+
 
  }  
