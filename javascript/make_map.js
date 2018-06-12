@@ -35,21 +35,21 @@ function map_data(patient_info, x){
 
 // function to create initial map
 function make_map(data_map) {
-  var map = new Datamap({element: document.getElementById('container'),
-	 fills: {
-            HIGHEST: '#a50f15',
-            HIGH: '#de2d26',
-            MEDIUM: '#fb6a4a',
-            LOW: '#fcae91',
-            defaultFill: "#fee5d9"
-        },
+  var map = new Datamap({element: document.getElementById('my-map'),
+	fills: {
+	            HIGHEST: '#006d2c',
+	            HIGH: '#31a354',
+	            MEDIUM: '#74c476',
+	            LOW: '#bae4b3',
+	            defaultFill: "#edf8e9"
+	        },
         data: data_map,
 
          geographyConfig: {
             popupTemplate: function(geo, data_map) {
             	if (!data_map){
 					 return ['<div class="hoverinfo"><strong>',
-									 'There is no data for cancer indidence in ' + geo.properties.name,
+									 'There is no data available for ' + geo.properties.name,
 									 '</strong></div>'].join('');
 				}
                 return ['<div class="hoverinfo"><strong>',
@@ -61,22 +61,93 @@ function make_map(data_map) {
         })
 };
 
-// dropdown menu to select data for map
-d3.select("#dropdown")
-	.on("change", function(d){
-		console.log("JA")
-		var selected = (d3.select(this).property("value"))
-		d3.select("body")
-		.append("p")
-		.text(selected + "ja")
-		new_map = map_data(patient_info, selected)
-    	update_map(new_map)
-	})
-
-
 // function to reset colors of the map after selected by dropdown menu
-function update_map(data_map){
-	map.updateChoropleth(null, {reset: true})
+function update_map_female(data_map){
+	d3.select("#my-map").select("svg").remove()
+
+	 var map = new Datamap({element: document.getElementById('my-map'),
+		 fills: {
+	            HIGHEST: '#a50f15',
+	            HIGH: '#de2d26',
+	            MEDIUM: '#fb6a4a',
+	            LOW: '#fcae91',
+	            defaultFill: "#fee5d9"
+	        },
+        data: data_map,
+
+         geographyConfig: {
+            popupTemplate: function(geo, data_map) {
+            	if (!data_map){
+					 return ['<div class="hoverinfo"><strong>',
+									 'There is no data available for ' + geo.properties.name,
+									 '</strong></div>'].join('');
+				}
+                return ['<div class="hoverinfo"><strong>',
+                        'In ' + geo.properties.name,
+                        ' cancer incidence per 100.000 citizens is: ' + data_map.value,
+                        '</strong></div>'].join('');
+            }
+        }
+        })
+}
+
+function update_map_male(data_map){
+	d3.select("#my-map").select("svg").remove()
+
+	 var map = new Datamap({element: document.getElementById('my-map'),
+		 fills: {
+	            HIGHEST: '#08519c',
+	            HIGH: '#3182bd',
+	            MEDIUM: '#6baed6',
+	            LOW: '#bdd7e7',
+	            defaultFill: "#eff3ff"
+	        },
+	        data: data_map,
+
+         	geographyConfig: {
+            popupTemplate: function(geo, data_map) {
+            	if (!data_map){
+					 return ['<div class="hoverinfo"><strong>',
+									 'There is no data available for ' + geo.properties.name,
+									 '</strong></div>'].join('');
+				}
+                return ['<div class="hoverinfo"><strong>',
+                        'In ' + geo.properties.name,
+                        ' cancer incidence per 100.000 citizens is: ' + data_map.value,
+                        '</strong></div>'].join('');
+            }
+        }
+        })
+}
+
+function update_map_all(data_map){
+	d3.select("#my-map").select("svg").remove()
+
+	 var map = new Datamap({element: document.getElementById('my-map'),
+
+		 fills: {
+	            HIGHEST: '#006d2c',
+	            HIGH: '#31a354',
+	            MEDIUM: '#74c476',
+	            LOW: '#bae4b3',
+	            defaultFill: "#edf8e9"
+	        },
+	        data: data_map,
+
+         	geographyConfig: {
+            popupTemplate: function(geo, data_map) {
+            	if (!data_map){
+					 return ['<div class="hoverinfo"><strong>',
+									 'There is no data available for ' + geo.properties.name,
+									 '</strong></div>'].join('');
+				}
+                return ['<div class="hoverinfo"><strong>',
+                        'In ' + geo.properties.name,
+                        ' cancer incidence per 100.000 citizens is: ' + data_map.value,
+                        '</strong></div>'].join('');
+            }
+        }
+        })
 }
 
 
