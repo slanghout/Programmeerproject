@@ -100,22 +100,22 @@ function MakeMyProject(error, Food_supply, patients, obesity, deceased) {
   MakeScatter(first_scatter)
 
   document.getElementById("Calories").onclick = function() {
-    UpdateScatter(ScatterData(calories, patient_info[0]));
+    UpdateScatter(ScatterData(calories, patient_info[0]), "calories");
   }
   document.getElementById("Fat").onclick = function() {
-    UpdateScatter(ScatterData(fat, patient_info[0]));
+    UpdateScatter(ScatterData(fat, patient_info[0]), "fat");
   }
   document.getElementById("Protein").onclick = function() {
-    UpdateScatter(ScatterData(protein, patient_info[0]));
+    UpdateScatter(ScatterData(protein, patient_info[0]), "protein");
   }
   document.getElementById("Fruit").onclick = function() {
-    UpdateScatter(ScatterData(fruit, patient_info[0]));
+    UpdateScatter(ScatterData(fruit, patient_info[0]), "fruit");
   }
   document.getElementById("Vegetables").onclick = function() {
-    UpdateScatter(ScatterData(veggies, patient_info[0]));
+    UpdateScatter(ScatterData(veggies, patient_info[0]), "Vegetables");
   }
   document.getElementById("Sugar").onclick = function() {
-    UpdateScatter(ScatterData(sugar, patient_info[0]));
+    UpdateScatter(ScatterData(sugar, patient_info[0]), "sugar");
   }
   
  }  

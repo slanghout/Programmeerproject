@@ -44,7 +44,7 @@ function MakeScatter(dataset){
 	var color_highest = "#006d2c"
 
 	// create svg of width and height
-	var svg = d3.select("body")
+	var svg = d3.select("#scatter")
 		.append("svg")
 		.attr("width", w)
 		.attr("height", h);
@@ -115,7 +115,7 @@ function MakeScatter(dataset){
 		.attr('y', h - 10)
 		.attr('text-anchor', 'end')
 		.attr('class', 'label')
-		.text('(kilo)grams of ... per day');   
+		.text('calories per day');   
 }
 
 function HoverFunction(d){
@@ -141,22 +141,22 @@ function HoverOut(){
 	d3.select(this)
 		.transition().delay(300)
         .attr("r", 5)
-
 }
 
-function UpdateScatter(dataset){
+function UpdateScatter(dataset, food){
 	// set width and height for the scatterplot
 	var h = 400;
 	var w = 600;
-  
+
 	// set padding for width and height
 	var w_padding = 100;
 	var h_padding = 40;
 	
-	svg = d3.select("svg")
+	svg = d3.select("#scatter").select("svg")
 
 	svg.selectAll("circle").remove()
 	svg.selectAll("text").remove()
+	svg.selectAll("g").remove()
 
 	var max_x = d3.max(dataset, function(d) { return d[0]; })
 	max_x_up = Math.ceil(max_x / 100.0) * 100
@@ -224,5 +224,5 @@ function UpdateScatter(dataset){
 		.attr('y', h - 10)
 		.attr('text-anchor', 'end')
 		.attr('class', 'label')
-		.text('(kilo)grams of ... per day');   
+		.text(food + ' per day (' + food + ")");   
 }
