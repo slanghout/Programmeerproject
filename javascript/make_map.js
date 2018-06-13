@@ -5,7 +5,7 @@
 // Function to make map
 
 // function create dataset for the map with all, male of female data
-function map_data(patient_info, x){
+function MapData(patient_info, x){
 	data_map = {}
 	for (var i = 0; i < patient_info[x].length; i ++)
 	{
@@ -34,7 +34,7 @@ function map_data(patient_info, x){
 }
 
 // function to create initial map
-function make_map(data_map) {
+function MakeMap(data_map) {
   var map = new Datamap({element: document.getElementById('my-map'),
 	fills: {
 	            HIGHEST: '#006d2c',
@@ -62,7 +62,7 @@ function make_map(data_map) {
 };
 
 // function to reset colors of the map after selected by dropdown menu
-function update_map_female(data_map){
+function UpdateMapFemale(data_map){
 	d3.select("#my-map").select("svg").remove()
 
 	 var map = new Datamap({element: document.getElementById('my-map'),
@@ -91,7 +91,7 @@ function update_map_female(data_map){
         })
 }
 
-function update_map_male(data_map){
+function UpdateMapMale(data_map){
 	d3.select("#my-map").select("svg").remove()
 
 	 var map = new Datamap({element: document.getElementById('my-map'),
@@ -120,7 +120,7 @@ function update_map_male(data_map){
         })
 }
 
-function update_map_all(data_map){
+function UpdateMapAll(data_map){
 	d3.select("#my-map").select("svg").remove()
 
 	 var map = new Datamap({element: document.getElementById('my-map'),
