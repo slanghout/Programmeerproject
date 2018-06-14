@@ -24,3 +24,7 @@
 - Made scales for scatterplot
 - Made buttons to choose info for scatterplot
 - Made hover to increase the dots
+
+## Day 8
+- Colors in the scatterplot match colors in the map
+- Legend for the map is added
