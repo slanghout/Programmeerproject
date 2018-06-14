@@ -181,14 +181,13 @@ function UpdateScatter(dataset, food, unit, data_type){
 		var color_medium = "#6baed6"
 		var color_high = "#3182bd"
 		var color_highest = "#08519c"
-}
+	}
 	if (data_type == 2){
 		var color_low = "#fcae91"
 		var color_medium = "#fb6a4a"
 		var color_high = "#de2d26"
 		var color_highest = "#a50f15"
 	} 
-	
 	
 	svg = d3.select("#scatter").select("svg")
 
@@ -208,12 +207,10 @@ function UpdateScatter(dataset, food, unit, data_type){
 	var xscale = d3.scale.linear()
     	.domain([min_x_up, (max_x_up)])
     	.range([w_padding, w - w_padding])
-    	.nice();
 
     var yscale = d3.scale.linear()
         .domain([0, max_y_up])
         .range([h - h_padding, h_padding])
-        .nice();
 
 	svg.selectAll("circle")
 	   .data(dataset)

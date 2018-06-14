@@ -47,7 +47,7 @@ function MakeMap(data_map) {
         data: data_map,
 
          geographyConfig: {
-            popupTemplate: function LightUp(geo, data_map) {
+            popupTemplate: function(geo, data_map) {
             	if (!data_map){
 					 return ['<div class="hoverinfo"><strong>',
 									 'There is no data available for ' + geo.properties.name,
