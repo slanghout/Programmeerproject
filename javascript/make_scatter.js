@@ -78,7 +78,21 @@ function MakeScatter(dataset){
 	   .attr("cy", function(d) {
 	        return yscale(d[1]);
 	   })
-	   .attr("r", 5);
+	   .attr("r", 5)
+	   .attr("fill", function(d){
+			if(d[1] < 10){
+				return color_low
+			}
+			if(d[1] <= 25 && d[1] > 10){
+				return color_medium
+			}
+			if(d[1] <= 35 && d[1] > 25){
+				return color_high
+			}
+			if(d[1] > 35){
+				return color_highest
+			}
+		});
 
 	svg.selectAll("circle")
 		.on("mouseover", HoverFunction)   		
@@ -115,35 +129,39 @@ function MakeScatter(dataset){
 		.attr('y', h - 10)
 		.attr('text-anchor', 'end')
 		.attr('class', 'label')
-		.text('calories per day');   
+		.text('Kilocalories (per capita per day)');   
 }
 
 function HoverFunction(d){
 	// determine the x and y position you hover over 
 	var yPos = parseFloat(d3.select(this).attr("cy"))
 	var xPos = parseFloat(d3.select(this).attr("cx"))
+	console.log(xPos, yPos)
 
-	// make the dot bigger
+	d3.select("#scatter").select("svg").append("text").attr({
+		id: "Hover",
+		x: 500,
+		y: 50
+	})
+	   .text(d[0] + ", " + d[1])
+   // make the dot bigger
 	d3.select(this)
 	    .attr("r", 10)
-	
-	// display number
-	d3.select("svg")
-		.append("text")
-		.attr("x", xPos)
-		.attr("y", yPos)
-		.attr("class","tooltip")
-		.text(d[0] + "," + d[1])
-		console.log(d[0] + "," + d[1])
 }
 
 function HoverOut(){
 	d3.select(this)
 		.transition().delay(300)
         .attr("r", 5)
+    
+    d3.select("#Hover")
+    .remove()
+
+    // LightUp  
 }
 
-function UpdateScatter(dataset, food){
+
+function UpdateScatter(dataset, food, unit, data_type){
 	// set width and height for the scatterplot
 	var h = 400;
 	var w = 600;
@@ -151,6 +169,26 @@ function UpdateScatter(dataset, food){
 	// set padding for width and height
 	var w_padding = 100;
 	var h_padding = 40;
+
+	if (data_type == 0){
+		var color_low = "#bae4b3"
+		var color_medium = "#74c476"
+		var color_high = "#31a354"
+		var color_highest = "#006d2c"
+	}
+	if (data_type == 1){
+		var color_low = "#bdd7e7"
+		var color_medium = "#6baed6"
+		var color_high = "#3182bd"
+		var color_highest = "#08519c"
+}
+	if (data_type == 2){
+		var color_low = "#fcae91"
+		var color_medium = "#fb6a4a"
+		var color_high = "#de2d26"
+		var color_highest = "#a50f15"
+	} 
+	
 	
 	svg = d3.select("#scatter").select("svg")
 
@@ -181,13 +219,27 @@ function UpdateScatter(dataset, food){
 	   .data(dataset)
 	   .enter()
 	   .append("circle")
-	   .attr("cx", function(d) {
+	   .attr("cx", function(d) { 
 	        return xscale(d[0]);
 	   })
 	   .attr("cy", function(d) {
 	        return yscale(d[1]);
 	   })
-	   .attr("r", 5);
+	   .attr("r", 5)
+	   .attr("fill", function(d){
+			if(d[1] < 10){
+				return color_low
+			}
+			if(d[1] <= 25 && d[1] > 10){
+				return color_medium
+			}
+			if(d[1] <= 35 && d[1] > 25){
+				return color_high
+			}
+			if(d[1] > 35){
+				return color_highest
+			}
+		});
 
 	svg.selectAll("circle")
 		.on("mouseover", HoverFunction)   		
@@ -224,5 +276,5 @@ function UpdateScatter(dataset, food){
 		.attr('y', h - 10)
 		.attr('text-anchor', 'end')
 		.attr('class', 'label')
-		.text(food + ' per day (' + food + ")");   
+		.text(food + ' (' + unit + ")");   
 }

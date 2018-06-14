@@ -12,22 +12,22 @@ function MapData(patient_info, x){
 	if (patient_info[x][i].Value <= 10)
 	 {
 	  country = patient_info[x][i].COU
-	  data_map[country] = {fillKey: "LOW", value: patient_info[x][i].Value};
+	  data_map[country] = {fillKey: "<10", value: patient_info[x][i].Value};
 	}
 	else if (patient_info[x][i].Value <= 25 && patient_info[x][i].Value > 10)
 	{
 	  country = patient_info[x][i].COU
-	  data_map[country] = {fillKey: "MEDIUM", value: patient_info[x][i].Value};
+	  data_map[country] = {fillKey: "10-25", value: patient_info[x][i].Value};
 	}
 	else if (patient_info[x][i].Value <= 35 && patient_info[x][i].Value > 25)
 	{
 	  country = patient_info[x][i].COU
-	  data_map[country] = {fillKey: "HIGH", value: patient_info[x][i].Value};
+	  data_map[country] = {fillKey: "25-35", value: patient_info[x][i].Value};
 	}
 	else if (patient_info[x][i].Value > 35)
 	{
 	  country = patient_info[x][i].COU
-	  data_map[country] = {fillKey: "HIGHEST", value: patient_info[x][i].Value};
+	  data_map[country] = {fillKey: ">35", value: patient_info[x][i].Value};
 	}
 	}
 	return(data_map)
@@ -37,16 +37,17 @@ function MapData(patient_info, x){
 function MakeMap(data_map) {
   var map = new Datamap({element: document.getElementById('my-map'),
 	fills: {
-	            HIGHEST: '#006d2c',
-	            HIGH: '#31a354',
-	            MEDIUM: '#74c476',
-	            LOW: '#bae4b3',
+	            ">35": '#006d2c',
+	            "25-35": '#31a354',
+	            "10-25": '#74c476',
+	            "<10": '#bae4b3',
+	            NONE: "#edf8e9",
 	            defaultFill: "#edf8e9"
 	        },
         data: data_map,
 
          geographyConfig: {
-            popupTemplate: function(geo, data_map) {
+            popupTemplate: function LightUp(geo, data_map) {
             	if (!data_map){
 					 return ['<div class="hoverinfo"><strong>',
 									 'There is no data available for ' + geo.properties.name,
@@ -56,21 +57,32 @@ function MakeMap(data_map) {
                         'In ' + geo.properties.name,
                         ' cancer incidence per 100.000 citizens is: ' + data_map.value,
                         '</strong></div>'].join('');
-            }
+            },
+            popOnHover: true,
+            highlightOnHover: true,
+            highlightFillColor: function(geo) {return geo["fillKey"] || "#edf8e9"; },
+            highlightBorderColor: "white",
+       		highlightBorderWidth: "4",
+        	highlightBorderOpacity: "1"
+            
         }
         })
+  map.legend();
+  
 };
 
 // function to reset colors of the map after selected by dropdown menu
 function UpdateMapFemale(data_map){
+	d3.select(".datamaps-legend").remove()
 	d3.select("#my-map").select("svg").remove()
 
 	 var map = new Datamap({element: document.getElementById('my-map'),
 		 fills: {
-	            HIGHEST: '#a50f15',
-	            HIGH: '#de2d26',
-	            MEDIUM: '#fb6a4a',
-	            LOW: '#fcae91',
+	            ">35": '#a50f15',
+	            "25-35": '#de2d26',
+	            "10-25": '#fb6a4a',
+	            "<10": '#fcae91',
+	            NONE: "#fee5d9",
 	            defaultFill: "#fee5d9"
 	        },
         data: data_map,
@@ -86,20 +98,28 @@ function UpdateMapFemale(data_map){
                         'In ' + geo.properties.name,
                         ' cancer incidence per 100.000 citizens is: ' + data_map.value,
                         '</strong></div>'].join('');
-            }
+            },
+            popOnHover: true,
+            highlightOnHover: true,
+            highlightFillColor: function(geo) {return geo["fillKey"] || "#fee5d9"; },
+            highlightBorderColor: "white",
+       		highlightBorderWidth: "4",
+        	highlightBorderOpacity: "1"
         }
         })
+	 map.legend();
 }
 
 function UpdateMapMale(data_map){
+	d3.select(".datamaps-legend").remove()
 	d3.select("#my-map").select("svg").remove()
-
 	 var map = new Datamap({element: document.getElementById('my-map'),
 		 fills: {
-	            HIGHEST: '#08519c',
-	            HIGH: '#3182bd',
-	            MEDIUM: '#6baed6',
-	            LOW: '#bdd7e7',
+	            ">35": '#08519c',
+	            "25-35": '#3182bd',
+	            "10-25": '#6baed6',
+	            "<10": '#bdd7e7',
+	            NONE: "#eff3ff",
 	            defaultFill: "#eff3ff"
 	        },
 	        data: data_map,
@@ -115,21 +135,29 @@ function UpdateMapMale(data_map){
                         'In ' + geo.properties.name,
                         ' cancer incidence per 100.000 citizens is: ' + data_map.value,
                         '</strong></div>'].join('');
-            }
-        }
+            },
+         	popOnHover: true,
+         	highlightOnHover: true,
+	        highlightFillColor: function(geo) {return geo["fillKey"] || "#eff3ff"; },
+	        highlightBorderColor: "white",
+	   		highlightBorderWidth: "4",
+	    	highlightBorderOpacity: "1"
+    }
         })
+	 map.legend();
 }
 
 function UpdateMapAll(data_map){
+	d3.select(".datamaps-legend").remove()
 	d3.select("#my-map").select("svg").remove()
-
 	 var map = new Datamap({element: document.getElementById('my-map'),
 
 		 fills: {
-	            HIGHEST: '#006d2c',
-	            HIGH: '#31a354',
-	            MEDIUM: '#74c476',
-	            LOW: '#bae4b3',
+	            ">35": '#006d2c',
+	            "25-35": '#31a354',
+	            "10-25": '#74c476',
+	            "<10": '#bae4b3',
+	            NONE : "#edf8e9",
 	            defaultFill: "#edf8e9"
 	        },
 	        data: data_map,
@@ -145,9 +173,16 @@ function UpdateMapAll(data_map){
                         'In ' + geo.properties.name,
                         ' cancer incidence per 100.000 citizens is: ' + data_map.value,
                         '</strong></div>'].join('');
-            }
+            },
+	        popOnHover: true,
+	        highlightOnHover: true,
+	        highlightFillColor: function(geo) {return geo["fillKey"] || "#edf8e9"; },
+	        highlightBorderColor: "white",
+	   		highlightBorderWidth: "4",
+	    	highlightBorderOpacity: "1"
         }
         })
+	 map.legend();
 }
 
 

@@ -8,6 +8,7 @@
     <script type ="text/javascript" src ="scripts/script.js"/></script>
     <script type ="text/javascript" src ="javascript/make_map.js"/></script>
     <script type ="text/javascript" src ="javascript/make_scatter.js"/></script>
+    <script type ="text/javascript" src ="javascript/make_bullet.js"/></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -32,12 +33,12 @@
         </ul>
       </div>
     </nav>
-    <h4>
+    <h4 style="position: relative; left: 30px;"">
   Colorectal Cancer Incidence per 100.000 Citizens</h4>
-  <h6>
+  <h6 style="position: relative; left: 30px;"">
   Select data to display all, male or female incidence</h6>
    
-    <div class="dropdown">
+    <div class="dropdown" style="position: relative; left: 30px;"">
     <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
       Select Data
     </button>
@@ -49,15 +50,17 @@
   </div>
 
 
-  <div id="my-map" style="position: relative; width: 700px; height: 400px;"">
+  <div id="my-map" style="position: relative; width: 700px; height: 400px; left: 30px;"">
     </div>
 
-    <h4>
+   <br></br>
+
+    <h4 style="position: relative; left: 30px;"">
     Colorectal cancer incidence vs food supply</h4>
-    <h6>
+    <h6 style="position: relative; left: 30px;"">
     Select type of food</h6>
 
-    <div class="checkbox">
+    <div class="checkbox"style="position: relative; left: 30px;"">
       <label class="radio-inline"><input type="radio" id="Calories" name="optradio">Calories</label>
       <label class="radio-inline"><input type="radio" id="Protein" name="optradio">Protein</label>
       <label class="radio-inline"><input type="radio" id="Fat" name="optradio">Fat</label>
@@ -66,7 +69,10 @@
       <label class="radio-inline"><input type="radio" id="Vegetables" name="optradio">Vegetables</label>
        </div>
 
-  <div id="scatter" style="position: relative; width: 600px; height: 400px;"">
+  <div id="scatter" style="position: relative; width: 600px; height: 400px; left:30px;"">
+    </div>
+
+  <div id="bullet" style="position: relative; width: 600px; height: 400px;"">
     </div>
 
 
