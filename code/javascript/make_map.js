@@ -41,8 +41,8 @@ function MakeMap(data_map) {
 	            "25-35": '#31a354',
 	            "10-25": '#74c476',
 	            "<10": '#bae4b3',
-	            NONE: "#edf8e9",
-	            defaultFill: "#edf8e9"
+	            NONE: "lightgrey",
+	            defaultFill: "lightgrey"
 	        },
         data: data_map,
 
@@ -82,8 +82,8 @@ function UpdateMapFemale(data_map){
 	            "25-35": '#de2d26',
 	            "10-25": '#fb6a4a',
 	            "<10": '#fcae91',
-	            NONE: "#fee5d9",
-	            defaultFill: "#fee5d9"
+	            NONE: "lightgrey",
+	            defaultFill: "lightgrey"
 	        },
         data: data_map,
 
@@ -119,8 +119,8 @@ function UpdateMapMale(data_map){
 	            "25-35": '#3182bd',
 	            "10-25": '#6baed6',
 	            "<10": '#bdd7e7',
-	            NONE: "#eff3ff",
-	            defaultFill: "#eff3ff"
+	            NONE: "lightgrey",
+	            defaultFill: 'lightgrey'
 	        },
 	        data: data_map,
 
@@ -157,8 +157,8 @@ function UpdateMapAll(data_map){
 	            "25-35": '#31a354',
 	            "10-25": '#74c476',
 	            "<10": '#bae4b3',
-	            NONE : "#edf8e9",
-	            defaultFill: "#edf8e9"
+	            NONE : "lightgrey",
+	            defaultFill: "lightgrey"
 	        },
 	        data: data_map,
 
