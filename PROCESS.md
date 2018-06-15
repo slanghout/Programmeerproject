@@ -28,3 +28,12 @@
 ## Day 8
 - Colors in the scatterplot match colors in the map
 - Legend for the map is added
+
+## Day 9
+- y-axis of the scatterplot changed to calories and colors represent colorectal cancer occurance
+- Created container so the scatterplot and map are next to each other on the page
+- Both scatterplot colors and map colors / data update with the dropdown menu
+- Scatterplot displays the country and cancer incidende at the top after hovering 
+- Displays the calories and food data next to x and y axis location
+- Barchart for the home page with info on why colorectal cancer is a problem
+- Started with the barchart, scaling and getting the data in

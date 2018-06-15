@@ -5,7 +5,7 @@
 // Function to make scatterplot
 
 // Function to create a dataset of the foodtype data with cancer data
-function ScatterData(food_data, cancer_data){
+function ScatterData(calories, food_data, cancer_data){
 	food_and_patient = [];
 	countries = [];
 	NR_OF_COUNTRIES = 44;
@@ -15,17 +15,28 @@ function ScatterData(food_data, cancer_data){
 		countries.push(food_data[element].COU);
 		food_and_patient.push([]);
 	}
+	console.log(food_data)
 
 	for (var i = 0; i < NR_OF_COUNTRIES; i++){
 		for (var j = 0; j < NR_OF_COUNTRIES; j++){
 			if (food_data[j].COU == countries[i]){
 				food_and_patient[i][0] = (parseFloat(food_data[j].Value));
 			}
+			if (calories[j].COU == countries[i]){
+				food_and_patient[i][1] = (parseFloat(calories[j].Value));
+			}
 			if (cancer_data[j].COU == countries[i]){
-				food_and_patient[i][1] = (parseFloat(cancer_data[j].Value));
+				food_and_patient[i][2] = (parseFloat(cancer_data[j].Value));
+			}
+			if (cancer_data[j].COU == countries[i]){
+				food_and_patient[i][3] = ((cancer_data[j].COU));
+			}
+			if (cancer_data[j].COU == countries[i]){
+				food_and_patient[i][4] = ((cancer_data[j].Country));
 			}
 		}
 	}
+	console.log(food_and_patient)
 	return(food_and_patient)
 }
 
@@ -55,8 +66,11 @@ function MakeScatter(dataset){
 	var min_x = d3.min(dataset, function(d) { return d[0]; })
 	min_x_up = Math.floor(min_x / 100.0) * 100
 
+	var min_y = d3.min(dataset, function(d) { return d[1]; })
+	min_y_up = Math.floor(min_y / 1000.0) * 1000
+
 	var max_y = d3.max(dataset, function(d) { return d[1]; })
-	max_y_up = Math.ceil(max_y / 10.0) * 10
+	max_y_up = Math.ceil(max_y / 1000.0) * 1000
 
 	var xscale = d3.scale.linear()
     	.domain([min_x_up, (max_x_up)])
@@ -64,7 +78,7 @@ function MakeScatter(dataset){
     	.nice();
 
     var yscale = d3.scale.linear()
-        .domain([0, max_y_up])
+        .domain([min_y_up, max_y_up])
         .range([h - h_padding, h_padding])
         .nice();
 
@@ -80,16 +94,16 @@ function MakeScatter(dataset){
 	   })
 	   .attr("r", 5)
 	   .attr("fill", function(d){
-			if(d[1] < 10){
+			if(d[2] < 10){
 				return color_low
 			}
-			if(d[1] <= 25 && d[1] > 10){
+			if(d[2] <= 25 && d[2] > 10){
 				return color_medium
 			}
-			if(d[1] <= 35 && d[1] > 25){
+			if(d[2] <= 35 && d[2] > 25){
 				return color_high
 			}
-			if(d[1] > 35){
+			if(d[2] > 35){
 				return color_highest
 			}
 		});
@@ -122,28 +136,43 @@ function MakeScatter(dataset){
 		.attr('x', 10)
 		.attr('y', 10)
 		.attr('class', 'label')
-		.text('Cancer Incidence per 100.000 citizens');
+		.text('Kilocalories (per capita per day)');
 
 	svg.append('text')
 		.attr('x', w)
 		.attr('y', h - 10)
 		.attr('text-anchor', 'end')
 		.attr('class', 'label')
-		.text('Kilocalories (per capita per day)');   
+		.text('Grammes of fat (per capita per day)');   
 }
 
 function HoverFunction(d){
+	
+	// LightUp(d[3], d[2])
 	// determine the x and y position you hover over 
 	var yPos = parseFloat(d3.select(this).attr("cy"))
 	var xPos = parseFloat(d3.select(this).attr("cx"))
-	console.log(xPos, yPos)
 
 	d3.select("#scatter").select("svg").append("text").attr({
 		id: "Hover",
-		x: 500,
-		y: 50
+		x: 150,
+		y: 30
 	})
-	   .text(d[0] + ", " + d[1])
+	   .text("In " + d[4] + " cancer Incidence is " + d[2] +"%")
+
+	 d3.select("#scatter").select("svg").append("text").attr({
+		id: "Hover_x",
+		x: xPos,
+		y: 355
+	})
+	   .text(d[0])
+
+  	d3.select("#scatter").select("svg").append("text").attr({
+		id: "Hover_y",
+		x: 100,
+		y: yPos
+	})
+	   .text(d[1])
    // make the dot bigger
 	d3.select(this)
 	    .attr("r", 10)
@@ -155,6 +184,10 @@ function HoverOut(){
         .attr("r", 5)
     
     d3.select("#Hover")
+    .remove()
+    d3.select("#Hover_x")
+    .remove()
+    d3.select("#Hover_y")
     .remove()
 
     // LightUp  
@@ -201,15 +234,18 @@ function UpdateScatter(dataset, food, unit, data_type){
 	var min_x = d3.min(dataset, function(d) { return d[0]; })
 	min_x_up = Math.floor(min_x / 100.0) * 100
 
+	var min_y = d3.min(dataset, function(d) { return d[1]; })
+	min_y_up = Math.floor(min_y / 1000.0) * 1000
+
 	var max_y = d3.max(dataset, function(d) { return d[1]; })
-	max_y_up = Math.ceil(max_y / 10.0) * 10
+	max_y_up = Math.ceil(max_y / 1000.0) * 1000
 
 	var xscale = d3.scale.linear()
     	.domain([min_x_up, (max_x_up)])
     	.range([w_padding, w - w_padding])
 
     var yscale = d3.scale.linear()
-        .domain([0, max_y_up])
+        .domain([min_y_up, max_y_up])
         .range([h - h_padding, h_padding])
 
 	svg.selectAll("circle")
@@ -224,16 +260,16 @@ function UpdateScatter(dataset, food, unit, data_type){
 	   })
 	   .attr("r", 5)
 	   .attr("fill", function(d){
-			if(d[1] < 10){
+			if(d[2] < 10){
 				return color_low
 			}
-			if(d[1] <= 25 && d[1] > 10){
+			if(d[2] <= 25 && d[2] > 10){
 				return color_medium
 			}
-			if(d[1] <= 35 && d[1] > 25){
+			if(d[2] <= 35 && d[2] > 25){
 				return color_high
 			}
-			if(d[1] > 35){
+			if(d[2] > 35){
 				return color_highest
 			}
 		});
@@ -266,7 +302,7 @@ function UpdateScatter(dataset, food, unit, data_type){
 		.attr('x', 10)
 		.attr('y', 10)
 		.attr('class', 'label')
-		.text('Cancer Incidence per 100.000 citizens');
+		.text('Kilocalories (per capita per day)');
 
 	svg.append('text')
 		.attr('x', w)

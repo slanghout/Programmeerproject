@@ -60,14 +60,17 @@ function MakeMyProject(error, Food_supply, patients, obesity, deceased) {
   document.getElementById("All").onclick = function() {
     data_type = 0
     UpdateMapAll(MapData(patient_info, data_type))
+    UpdateScatter(ScatterData(calories, food_selected, patient_info[data_type]), food_info[0], food_info[1] , data_type);
   }
   document.getElementById("Male").onclick = function() {
     data_type = 1
-    UpdateMapMale(MapData(patient_info, data_type));
+    UpdateMapMale(MapData(patient_info, data_type))
+    UpdateScatter(ScatterData(calories, food_selected, patient_info[data_type]), food_info[0], food_info[1] , data_type);
   }
   document.getElementById("Female").onclick = function() {
     data_type = 2
-    UpdateMapFemale(MapData(patient_info, data_type));
+    UpdateMapFemale(MapData(patient_info, data_type))
+    UpdateScatter(ScatterData(calories, food_selected, patient_info[data_type]), food_info[0], food_info[1] , data_type);
   }
 
   protein = [];
@@ -103,33 +106,37 @@ function MakeMyProject(error, Food_supply, patients, obesity, deceased) {
     }
   }
 
-  first_scatter = ScatterData(calories, patient_info[data_type])
-  MakeScatter(first_scatter)
-  var food_selected = calories
+  first_scatter = ScatterData(calories, fat, patient_info[data_type])
+  MakeScatter(first_scatter, patient_info[data_type])
+  var food_selected = fat
+  var food_info = ["Grammes of fat", "per capita per day"]
 
-  document.getElementById("Calories").onclick = function() {
-    UpdateScatter(ScatterData(calories, patient_info[data_type]), "Kilocalories", "per capita per day", data_type);
-    food_selected = calories
-  }
   document.getElementById("Fat").onclick = function() {
-    UpdateScatter(ScatterData(fat, patient_info[data_type]), "Grammes of fat", "per capita per day", data_type);
     food_selected = fat
+    food_info = ["Grammes of fat", "per capita per day"]
+    UpdateScatter(ScatterData(calories, food_selected, patient_info[data_type]), food_info[0], food_info[1] , data_type);
+    
   }
   document.getElementById("Protein").onclick = function() {
-    UpdateScatter(ScatterData(protein, patient_info[data_type]), "Grammes of protein", "per capita per day", data_type);
     food_selected = protein
+    food_info = ["Grammes of protein", "per capita per day"]
+    UpdateScatter(ScatterData(calories, food_selected, patient_info[data_type]), food_info[0], food_info[1] , data_type);
+    
   }
   document.getElementById("Fruit").onclick = function() {
-    UpdateScatter(ScatterData(fruit, patient_info[data_type]), "Kilos of fruit", "per capita per year", data_type);
     food_selected = fruit
+    food_info = ["Kilos of fruit", "per capita per year"]
+    UpdateScatter(ScatterData(calories, food_selected, patient_info[data_type]), food_info[0], food_info[1] , data_type);
   }
   document.getElementById("Vegetables").onclick = function() {
-    UpdateScatter(ScatterData(veggies, patient_info[data_type]), "Kilos of vegetables", "per capita per year", data_type);
     food_selected = veggies
+    food_info = ["Kilos of vegetables", "per capita per year"]
+    UpdateScatter(ScatterData(calories, food_selected, patient_info[data_type]), food_info[0], food_info[1] , data_type);
   }
   document.getElementById("Sugar").onclick = function() {
-    UpdateScatter(ScatterData(sugar, patient_info[data_type]), "Kilos of sugar", "per capita per year", data_type);
     food_selected = sugar
+    food_info = ["Kilos of sugar", "per capita per year"]
+    UpdateScatter(ScatterData(calories, food_selected, patient_info[data_type]), food_info[0], food_info[1] , data_type);
   }
   
  }  

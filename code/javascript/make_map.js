@@ -35,6 +35,7 @@ function MapData(patient_info, x){
 
 // function to create initial map
 function MakeMap(data_map) {
+ var value = data_map.value
   var map = new Datamap({element: document.getElementById('my-map'),
 	fills: {
 	            ">35": '#006d2c',
@@ -45,9 +46,9 @@ function MakeMap(data_map) {
 	            defaultFill: "lightgrey"
 	        },
         data: data_map,
-
          geographyConfig: {
-            popupTemplate: function(geo, data_map) {
+            popupTemplate: function LightUp(geo, data_map) {
+            	console.log(geo)
             	if (!data_map){
 					 return ['<div class="hoverinfo"><strong>',
 									 'There is no data available for ' + geo.properties.name,
@@ -58,6 +59,7 @@ function MakeMap(data_map) {
                         ' cancer incidence per 100.000 citizens is: ' + data_map.value,
                         '</strong></div>'].join('');
             },
+            // popupTemplate: LightUp(geo, value),
             popOnHover: true,
             highlightOnHover: true,
             highlightFillColor: function(geo) {return geo["fillKey"] || "#edf8e9"; },
@@ -88,7 +90,7 @@ function UpdateMapFemale(data_map){
         data: data_map,
 
          geographyConfig: {
-            popupTemplate: function(geo, data_map) {
+            popupTemplate: function LightUp(geo, data_map) {
             	if (!data_map){
 					 return ['<div class="hoverinfo"><strong>',
 									 'There is no data available for ' + geo.properties.name,
@@ -125,7 +127,7 @@ function UpdateMapMale(data_map){
 	        data: data_map,
 
          	geographyConfig: {
-            popupTemplate: function(geo, data_map) {
+            popupTemplate: function LightUp(geo, data_map) {
             	if (!data_map){
 					 return ['<div class="hoverinfo"><strong>',
 									 'There is no data available for ' + geo.properties.name,
@@ -163,7 +165,7 @@ function UpdateMapAll(data_map){
 	        data: data_map,
 
          	geographyConfig: {
-            popupTemplate: function(geo, data_map) {
+            popupTemplate: function LightUp(geo, data_map) {
             	if (!data_map){
 					 return ['<div class="hoverinfo"><strong>',
 									 'There is no data available for ' + geo.properties.name,

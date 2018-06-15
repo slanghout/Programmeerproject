@@ -33,15 +33,20 @@
         </ul>
       </div>
     </nav>
+
+<div class="container-fluid">
+   
+  <div class="row">
+  <div class="col-sm-6">
     <h4 style="position: relative; left: 30px;"">
   Colorectal Cancer Incidence per 100.000 Citizens</h4>
   <h6 style="position: relative; left: 30px;"">
   Select data to display all, male or female incidence</h6>
-   
     <div class="dropdown" style="position: relative; left: 30px;"">
     <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
       Select Data
     </button>
+    
     <ul class="dropdown-menu" id="dropdown-menu">
         <li><a class="dropdown-item" type="button" id="All">All</a></li>
         <li><a class="dropdown-item" type="button" id="Male">Male</a></li>
@@ -50,27 +55,34 @@
   </div>
 
 
-  <div id="my-map" style="position: relative; width: 700px; height: 400px; left: 30px;"">
+  <div id="my-map" style="position: relative; width: 700px; height: 400px;"">
     </div>
+  </div>
 
-   <br></br>
+ <div class="col-sm-6">
 
     <h4 style="position: relative; left: 30px;"">
     Colorectal cancer incidence vs food supply</h4>
     <h6 style="position: relative; left: 30px;"">
     Select type of food</h6>
 
-    <div class="checkbox"style="position: relative; left: 30px;"">
-      <label class="radio-inline"><input type="radio" id="Calories" name="optradio">Calories</label>
+   <div class="checkbox"style="position: relative; left: 30px;"">
       <label class="radio-inline"><input type="radio" id="Protein" name="optradio">Protein</label>
       <label class="radio-inline"><input type="radio" id="Fat" name="optradio">Fat</label>
       <label class="radio-inline"><input type="radio" id="Sugar" name="optradio">Sugar</label>
       <label class="radio-inline"><input type="radio" id="Fruit" name="optradio">Fruit</label>
       <label class="radio-inline"><input type="radio" id="Vegetables" name="optradio">Vegetables</label>
        </div>
-
-  <div id="scatter" style="position: relative; width: 600px; height: 400px; left:30px;"">
+  <div id="scatter" style="position: relative; width: 600px; height: 400px;"">
     </div>
+  </div>
+</div>
+
+   
+
+   
+
+  
 
   <div id="bullet" style="position: relative; width: 600px; height: 400px;"">
     </div>
