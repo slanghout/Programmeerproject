@@ -44,3 +44,4 @@
 - Started on the bulletchart
 - Shows what daily/yearly intake should be(bar greys), what the range of the countries is(black lines) and what the country selected value has(blue bar)
 - Need to create the title and information on the bullet chart
+- Need to decide on the colors for bullet chart

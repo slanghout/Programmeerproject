@@ -1,4 +1,5 @@
 function BulletData(data){
+  var country = data[6]
   var data =   [{"title":"Kilocalories","subtitle":"Per capita per day","ranges":[1800,2800,4000],"measures":[data[0]],"markers":[2435, 3739]},
     {"title":"Protein(Grammes)","subtitle":"per capita per day","ranges":[75, 157,200],"measures":[data[1]],"markers":[52, 169]},
     {"title":"Fat(Grammes)","subtitle":"per capita per day","ranges":[40,70,200],"measures":[data[2]],"markers":[59, 167]},
@@ -9,11 +10,12 @@ function BulletData(data){
   // source : http://healthyeating.sfgate.com/daily-amounts-carbs-fat-fiber-sodium-protein-4230.html
   // https://www.healthline.com/nutrition/how-much-sugar-per-day#section3
   // https://www.ahealthylife.nl/hoeveel-fruit-per-dag-is-het-gezondst/
-  return data
+  MakeBullet(data, country)
 }
 
-function MakeBullet(data){
+function MakeBullet(data, country){
 
+  d3.select("#bullet").selectAll("text").remove()
   d3.select("#bullet").selectAll("svg").remove()
 
   var margin = {top: 5, right: 40, bottom: 20, left: 150},
@@ -48,11 +50,14 @@ function MakeBullet(data){
       .attr("dy", "1em")
       .text(function(d) { return d.subtitle; });
 
-  d3.select("#information").select("svg").append("text")
-    // .append("text")
-    .attr("x", 200)
-    .attr("y", 200)
-    .text("HOI")
+  d3.select("#bullet").append("text")
+    .text(country)
+    .attr('x', 10)
+    .attr('y', 10)
+    .attr("font-family", "sans-serif")
+    .attr("font-size", "30px")
+    .attr("fill", "black");
+
 }
 
 

@@ -102,8 +102,6 @@ function MakeMyProject(error, Food_supply, patients, obesity, deceased) {
   
   var all_food = [calories, protein, fat, sugar, fruit, veggies]
   var all_food_data = [all_calories, all_protein, all_fat,all_sugar, all_fruit, all_veggies]
-
-  console.log(all_food_data)
   
   first_scatter = ScatterData(calories, fat, patient_info[data_type])
   MakeScatter(first_scatter, all_food)

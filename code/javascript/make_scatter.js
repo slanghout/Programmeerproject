@@ -123,11 +123,11 @@ function MakeScatter(dataset, all_food){
 				if (all_food[0][i].COU == d[3]){
 					var data = [all_food[0][i].Value, all_food[1][i].Value,
 						all_food[2][i].Value, all_food[3][i].Value,
-						all_food[4][i].Value,all_food[5][i].Value]
+						all_food[4][i].Value,all_food[5][i].Value, all_food[0][i].Country]
 				}
 			}
-    		var new_bullet = BulletData(data)
-    		MakeBullet(new_bullet)
+    		BulletData(data)
+    		// MakeBullet(new_bullet)
     	})
 	     
   	var xAxis = d3.svg.axis()
@@ -308,11 +308,11 @@ function UpdateScatter(dataset, food, unit, data_type, all_food){
 				if (all_food[0][i].COU == d[3]){
 					var data = [all_food[0][i].Value, all_food[1][i].Value,
 						all_food[2][i].Value, all_food[3][i].Value,
-						all_food[4][i].Value, all_food[5][i].Value]
+						all_food[4][i].Value, all_food[5][i].Value,
+						all_food[0][i].Country]
 				}
 			}
-    		var new_bullet = BulletData(data)
-    		MakeBullet(new_bullet)
+    		BulletData(data)
     	});
 	     
   	var xAxis = d3.svg.axis()

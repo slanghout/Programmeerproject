@@ -101,8 +101,6 @@ function MakeBarchart(dataset, countryname){
 		.attr('y', 10)
 		.attr('class', 'label')
 		.text('Cancer incidence per 100.000 citizens');
-
-
 }
 
 function UpdateBarchart(dataset, countryname){
