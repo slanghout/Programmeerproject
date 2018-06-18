@@ -15,7 +15,6 @@ function ScatterData(calories, food_data, cancer_data){
 		countries.push(food_data[element].COU);
 		food_and_patient.push([]);
 	}
-	console.log(food_data)
 
 	for (var i = 0; i < NR_OF_COUNTRIES; i++){
 		for (var j = 0; j < NR_OF_COUNTRIES; j++){
@@ -36,11 +35,10 @@ function ScatterData(calories, food_data, cancer_data){
 			}
 		}
 	}
-	console.log(food_and_patient)
 	return(food_and_patient)
 }
 
-function MakeScatter(dataset){
+function MakeScatter(dataset, all_food){
 	// set width and height for the scatterplot
 	var h = 400;
 	var w = 600;
@@ -110,7 +108,27 @@ function MakeScatter(dataset){
 
 	svg.selectAll("circle")
 		.on("mouseover", HoverFunction)   		
-    	.on("mouseout", HoverOut);
+    	.on("mouseout", HoverOut)
+    	.on("click", function(d){
+    		d3.select("#Nametag").append("svg")
+			   	.append("text")
+				.text(d[3])
+				.attr('x', 300)
+				.attr('y', 30)
+				.attr("font-family", "sans-serif")
+		   		.attr("font-size", "30px")
+		   		.attr("fill", "black");
+    		console.log(all_food)
+			for (var i = 0; i < 44; i++){
+				if (all_food[0][i].COU == d[3]){
+					var data = [all_food[0][i].Value, all_food[1][i].Value,
+						all_food[2][i].Value, all_food[3][i].Value,
+						all_food[4][i].Value,all_food[5][i].Value]
+				}
+			}
+    		var new_bullet = BulletData(data)
+    		MakeBullet(new_bullet)
+    	})
 	     
   	var xAxis = d3.svg.axis()
 		.scale(xscale)
@@ -158,7 +176,7 @@ function HoverFunction(d){
 		x: 150,
 		y: 30
 	})
-	   .text("In " + d[4] + " cancer Incidence is " + d[2] +"%")
+	   .text("In " + d[4] + " cancer Incidence is " + d[2])
 
 	 d3.select("#scatter").select("svg").append("text").attr({
 		id: "Hover_x",
@@ -189,12 +207,10 @@ function HoverOut(){
     .remove()
     d3.select("#Hover_y")
     .remove()
-
-    // LightUp  
 }
 
-
-function UpdateScatter(dataset, food, unit, data_type){
+function UpdateScatter(dataset, food, unit, data_type, all_food){
+	console.log(all_food)
 	// set width and height for the scatterplot
 	var h = 400;
 	var w = 600;
@@ -276,7 +292,28 @@ function UpdateScatter(dataset, food, unit, data_type){
 
 	svg.selectAll("circle")
 		.on("mouseover", HoverFunction)   		
-    	.on("mouseout", HoverOut);
+    	.on("mouseout", HoverOut)
+    	.on("click", function(d){
+    		console.log(all_food)
+    		d3.select("#Nametag").append("svg")
+			   	.append("text")
+				.text(d[3])
+				.attr('x', 300)
+				.attr('y', 30)
+				.attr("font-family", "sans-serif")
+		   		.attr("font-size", "30px")
+		   		.attr("fill", "black");
+    		console.log(all_food)
+			for (var i = 0; i < 44; i++){
+				if (all_food[0][i].COU == d[3]){
+					var data = [all_food[0][i].Value, all_food[1][i].Value,
+						all_food[2][i].Value, all_food[3][i].Value,
+						all_food[4][i].Value, all_food[5][i].Value]
+				}
+			}
+    		var new_bullet = BulletData(data)
+    		MakeBullet(new_bullet)
+    	});
 	     
   	var xAxis = d3.svg.axis()
 		.scale(xscale)

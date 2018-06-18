@@ -37,3 +37,10 @@
 - Displays the calories and food data next to x and y axis location
 - Barchart for the home page with info on why colorectal cancer is a problem
 - Started with the barchart, scaling and getting the data in
+
+## Day 10
+- Continued Barchart
+- Chosen for 5 countries to display information
+- Started on the bulletchart
+- Shows what daily/yearly intake should be(bar greys), what the range of the countries is(black lines) and what the country selected value has(blue bar)
+- Need to create the title and information on the bullet chart

@@ -57,86 +57,111 @@ function MakeMyProject(error, Food_supply, patients, obesity, deceased) {
   start_map = MapData(patient_info, 0);
   MakeMap(start_map);
 
-  document.getElementById("All").onclick = function() {
-    data_type = 0
-    UpdateMapAll(MapData(patient_info, data_type))
-    UpdateScatter(ScatterData(calories, food_selected, patient_info[data_type]), food_info[0], food_info[1] , data_type);
-  }
-  document.getElementById("Male").onclick = function() {
-    data_type = 1
-    UpdateMapMale(MapData(patient_info, data_type))
-    UpdateScatter(ScatterData(calories, food_selected, patient_info[data_type]), food_info[0], food_info[1] , data_type);
-  }
-  document.getElementById("Female").onclick = function() {
-    data_type = 2
-    UpdateMapFemale(MapData(patient_info, data_type))
-    UpdateScatter(ScatterData(calories, food_selected, patient_info[data_type]), food_info[0], food_info[1] , data_type);
-  }
-
   protein = [];
   sugar = [];
   calories = [];
   fat = [];
   fruit = [];
   veggies = [];
-
-
+  all_protein = [];
+  all_sugar = [];
+  all_calories = [];
+  all_fat = [];
+  all_fruit = [];
+  all_veggies = [];
 
   food_length = Food_supply.length
   for (var element = 0; element < food_length; element ++){
     if(Food_supply[element].YEA == "2012"){
       if (Food_supply[element].Variable == "Total fat supply"){
-        fat.push(Food_supply[element]);
+        fat.push(Food_supply[element])
+        all_fat.push(Food_supply[element].Value);
       }
       else if(Food_supply[element].Variable == "Total protein supply"){
-        protein.push(Food_supply[element]);
+        protein.push(Food_supply[element])
+        all_protein.push(Food_supply[element].Value);
       }
       else if(Food_supply[element].Variable == "Total calories supply"){
-        calories.push(Food_supply[element]);
+        calories.push(Food_supply[element])
+        all_calories.push(parseFloat(Food_supply[element].Value));
       }
       else if(Food_supply[element].Variable == "Sugar supply"){
-        sugar.push(Food_supply[element]);
+        sugar.push(Food_supply[element])
+        all_sugar.push(parseFloat(Food_supply[element].Value));
       }
       else if(Food_supply[element].Variable == "Fruits supply"){
-        fruit.push(Food_supply[element]);
+        fruit.push(Food_supply[element])
+        all_fruit.push(Food_supply[element].Value);
       }
       else if(Food_supply[element].Variable == "Vegetables supply"){
-        veggies.push(Food_supply[element]);
+        veggies.push(Food_supply[element])
+        all_veggies.push(Food_supply[element].Value);
       }
     }
   }
+  
+  var all_food = [calories, protein, fat, sugar, fruit, veggies]
+  var all_food_data = [all_calories, all_protein, all_fat,all_sugar, all_fruit, all_veggies]
 
+  console.log(all_food_data)
+  
   first_scatter = ScatterData(calories, fat, patient_info[data_type])
-  MakeScatter(first_scatter, patient_info[data_type])
+  MakeScatter(first_scatter, all_food)
+  
   var food_selected = fat
   var food_info = ["Grammes of fat", "per capita per day"]
 
+  // select what will happen after selecting in dropdown
+  document.getElementById("All").onclick = function() {
+    data_type = 0
+    UpdateMapAll(MapData(patient_info, data_type))
+    var this_data = ScatterData(calories, food_selected, patient_info[data_type])
+    UpdateScatter(this_data, food_info[0], food_info[1] , data_type, all_food);
+  }
+  document.getElementById("Male").onclick = function() {
+    data_type = 1
+    UpdateMapMale(MapData(patient_info, data_type))
+    var this_data = ScatterData(calories, food_selected, patient_info[data_type])
+    UpdateScatter(this_data, food_info[0], food_info[1] , data_type, all_food);
+  }
+  document.getElementById("Female").onclick = function() {
+    data_type = 2
+    UpdateMapFemale(MapData(patient_info, data_type))
+    var this_data = ScatterData(calories, food_selected, patient_info[data_type])
+    UpdateScatter(this_data, food_info[0], food_info[1] , data_type, all_food);
+  }
+
+  // select what happens after clicking on the select boxes
   document.getElementById("Fat").onclick = function() {
     food_selected = fat
     food_info = ["Grammes of fat", "per capita per day"]
-    UpdateScatter(ScatterData(calories, food_selected, patient_info[data_type]), food_info[0], food_info[1] , data_type);
+    var this_data = ScatterData(calories, food_selected, patient_info[data_type])
+    UpdateScatter(this_data, food_info[0], food_info[1] , data_type, all_food);
     
   }
   document.getElementById("Protein").onclick = function() {
     food_selected = protein
     food_info = ["Grammes of protein", "per capita per day"]
-    UpdateScatter(ScatterData(calories, food_selected, patient_info[data_type]), food_info[0], food_info[1] , data_type);
+    var this_data = ScatterData(calories, food_selected, patient_info[data_type])
+    UpdateScatter(this_data, food_info[0], food_info[1] , data_type, all_food);
     
   }
   document.getElementById("Fruit").onclick = function() {
     food_selected = fruit
     food_info = ["Kilos of fruit", "per capita per year"]
-    UpdateScatter(ScatterData(calories, food_selected, patient_info[data_type]), food_info[0], food_info[1] , data_type);
+    var this_data = ScatterData(calories, food_selected, patient_info[data_type])
+    UpdateScatter(this_data, food_info[0], food_info[1] , data_type, all_food);
   }
   document.getElementById("Vegetables").onclick = function() {
     food_selected = veggies
     food_info = ["Kilos of vegetables", "per capita per year"]
-    UpdateScatter(ScatterData(calories, food_selected, patient_info[data_type]), food_info[0], food_info[1] , data_type);
+    var this_data = ScatterData(calories, food_selected, patient_info[data_type])
+    UpdateScatter(this_data, food_info[0], food_info[1] , data_type, all_food);
   }
   document.getElementById("Sugar").onclick = function() {
     food_selected = sugar
     food_info = ["Kilos of sugar", "per capita per year"]
-    UpdateScatter(ScatterData(calories, food_selected, patient_info[data_type]), food_info[0], food_info[1] , data_type);
+    var this_data = ScatterData(calories, food_selected, patient_info[data_type])
+    UpdateScatter(this_data, food_info[0], food_info[1] , data_type, all_food);
   }
-  
  }  
