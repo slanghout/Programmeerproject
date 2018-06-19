@@ -53,3 +53,5 @@
 - Changed barchart data so all countries can be displayed, dropdown has different menus for the different continents.
 - Scatterplot and barchart change with transform instead of remove and remake
 - Also after clicking on a country in the map the bullet chart appears
+
+## Day 13
