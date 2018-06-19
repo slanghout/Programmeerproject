@@ -14,7 +14,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="code/css/project.css" type="text/css">
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"> -->
   </head>
   <body>
      <div class="jumbotron text-center">
@@ -49,9 +48,9 @@
     </button>
     
     <ul class="dropdown-menu" id="dropdown-menu">
-        <li><a class="dropdown-item" type="button" id="All">All</a></li>
-        <li><a class="dropdown-item" type="button" id="Male">Male</a></li>
-        <li><a class="dropdown-item" type="button" id="Female">Female</a></li>
+        <li><a class="dropdown-item" value = "0" type="button" id="All">All</a></li>
+        <li><a class="dropdown-item" value = "1" type="button" id="Male">Male</a></li>
+        <li><a class="dropdown-item" value = "2" type="button" id="Female">Female</a></li>
       </ul>
   </div>
 
@@ -68,11 +67,11 @@
     Select type of food</h6>
 
    <div class="checkbox"style="position: relative; left: 30px;"">
-      <label class="radio-inline"><input type="radio" id="Protein" name="optradio">Protein</label>
-      <label class="radio-inline"><input type="radio" id="Fat" name="optradio">Fat</label>
-      <label class="radio-inline"><input type="radio" id="Sugar" name="optradio">Sugar</label>
-      <label class="radio-inline"><input type="radio" id="Fruit" name="optradio">Fruit</label>
-      <label class="radio-inline"><input type="radio" id="Vegetables" name="optradio">Vegetables</label>
+      <label class="radio-inline"><input type="radio" value = "Protein" id="Protein" name="optradio">Protein</label>
+      <label class="radio-inline"><input type="radio" value = "Fat" id="Fat" name="optradio">Fat</label>
+      <label class="radio-inline"><input type="radio" value = "Sugar" id="Sugar" name="optradio">Sugar</label>
+      <label class="radio-inline"><input type="radio" value = "Fruit" id="Fruit" name="optradio">Fruit</label>
+      <label class="radio-inline"><input type="radio" value = "Vegetables" id="Vegetables" name="optradio">Vegetables</label>
        </div>
   <div id="scatter" style="position: relative; width: 600px; height: 400px;"">
     </div>
@@ -83,6 +82,8 @@
    <div class="row">
      <div class="col-sm-6">
     <br>
+    <div id="info" style="position: relative; width: 200px; height: 50px; left: 90px"">
+    </div>
   <div id="bullet" style="position: relative; width: 600px; height: 400px;"">
     </div>
 </div>

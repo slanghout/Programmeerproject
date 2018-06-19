@@ -54,9 +54,6 @@ function MakeMyProject(error, Food_supply, patients, obesity, deceased) {
 
   patient_info = [all_info, male_info, female_info];
 
-  start_map = MapData(patient_info, 0);
-  MakeMap(start_map);
-
   protein = [];
   sugar = [];
   calories = [];
@@ -99,67 +96,49 @@ function MakeMyProject(error, Food_supply, patients, obesity, deceased) {
       }
     }
   }
-  
+
   var all_food = [calories, protein, fat, sugar, fruit, veggies]
   var all_food_data = [all_calories, all_protein, all_fat,all_sugar, all_fruit, all_veggies]
-  
-  first_scatter = ScatterData(calories, fat, patient_info[data_type])
-  MakeScatter(first_scatter, all_food)
+
+  MakeMap(all_food, patient_info, data_type);
+  MakeScatter(ScatterData(calories, fat, patient_info[data_type]), all_food)
   
   var food_selected = fat
   var food_info = ["Grammes of fat", "per capita per day"]
 
-  // select what will happen after selecting in dropdown
-  document.getElementById("All").onclick = function() {
-    data_type = 0
-    UpdateMapAll(MapData(patient_info, data_type))
+  d3.selectAll(".dropdown-item").on("click", function(){
+    var value = this.getAttribute("value")
+    data_type = value;
+    MakeMap(all_food, patient_info, data_type)
     var this_data = ScatterData(calories, food_selected, patient_info[data_type])
     UpdateScatter(this_data, food_info[0], food_info[1] , data_type, all_food);
-  }
-  document.getElementById("Male").onclick = function() {
-    data_type = 1
-    UpdateMapMale(MapData(patient_info, data_type))
-    var this_data = ScatterData(calories, food_selected, patient_info[data_type])
-    UpdateScatter(this_data, food_info[0], food_info[1] , data_type, all_food);
-  }
-  document.getElementById("Female").onclick = function() {
-    data_type = 2
-    UpdateMapFemale(MapData(patient_info, data_type))
-    var this_data = ScatterData(calories, food_selected, patient_info[data_type])
-    UpdateScatter(this_data, food_info[0], food_info[1] , data_type, all_food);
-  }
 
-  // select what happens after clicking on the select boxes
-  document.getElementById("Fat").onclick = function() {
-    food_selected = fat
-    food_info = ["Grammes of fat", "per capita per day"]
-    var this_data = ScatterData(calories, food_selected, patient_info[data_type])
-    UpdateScatter(this_data, food_info[0], food_info[1] , data_type, all_food);
+  })
     
-  }
-  document.getElementById("Protein").onclick = function() {
-    food_selected = protein
-    food_info = ["Grammes of protein", "per capita per day"]
-    var this_data = ScatterData(calories, food_selected, patient_info[data_type])
-    UpdateScatter(this_data, food_info[0], food_info[1] , data_type, all_food);
+    d3.selectAll("input[name='optradio']").on("click", function(){
+      var selected = this.getAttribute("value");
+      if (selected == "Fat"){
+        food_selected = fat
+        food_info = ["Grammes of fat", "per capita per day"]
+      }
+      if(selected == "Protein"){
+        food_selected = protein
+        food_info = ["Grammes of protein", "per capita per day"]
+      }
+      if (selected == "Sugar"){
+        food_selected = sugar
+        food_info = ["Kilos of sugar", "per capita per year"]
+      }
+      if(selected == "Fruit"){
+        food_selected = fruit
+        food_info = ["Kilos of fruit", "per capita per year"]
+      }
+      if (selected == "Vegetables"){
+        food_selected = veggies
+        food_info = ["Kilos of vegetables", "per capita per year"]
+      }
+      var this_data = ScatterData(calories, food_selected, patient_info[data_type])
+      UpdateScatter(this_data, food_info[0], food_info[1] , data_type, all_food);
+    })
     
-  }
-  document.getElementById("Fruit").onclick = function() {
-    food_selected = fruit
-    food_info = ["Kilos of fruit", "per capita per year"]
-    var this_data = ScatterData(calories, food_selected, patient_info[data_type])
-    UpdateScatter(this_data, food_info[0], food_info[1] , data_type, all_food);
-  }
-  document.getElementById("Vegetables").onclick = function() {
-    food_selected = veggies
-    food_info = ["Kilos of vegetables", "per capita per year"]
-    var this_data = ScatterData(calories, food_selected, patient_info[data_type])
-    UpdateScatter(this_data, food_info[0], food_info[1] , data_type, all_food);
-  }
-  document.getElementById("Sugar").onclick = function() {
-    food_selected = sugar
-    food_info = ["Kilos of sugar", "per capita per year"]
-    var this_data = ScatterData(calories, food_selected, patient_info[data_type])
-    UpdateScatter(this_data, food_info[0], food_info[1] , data_type, all_food);
-  }
  }  

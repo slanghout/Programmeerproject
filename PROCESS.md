@@ -34,14 +34,22 @@
 - Created container so the scatterplot and map are next to each other on the page
 - Both scatterplot colors and map colors / data update with the dropdown menu
 - Scatterplot displays the country and cancer incidende at the top after hovering 
+
+## Day 10
 - Displays the calories and food data next to x and y axis location
 - Barchart for the home page with info on why colorectal cancer is a problem
 - Started with the barchart, scaling and getting the data in
 
-## Day 10
+## Day 11
 - Continued Barchart
 - Chosen for 5 countries to display information
 - Started on the bulletchart
 - Shows what daily/yearly intake should be(bar greys), what the range of the countries is(black lines) and what the country selected value has(blue bar)
 - Need to create the title and information on the bullet chart
 - Need to decide on the colors for bullet chart
+
+## Day 12
+- Changed createmap function so only 1 function needed instead of 3 seperate update ones for the different options.
+- Changed barchart data so all countries can be displayed, dropdown has different menus for the different continents.
+- Scatterplot and barchart change with transform instead of remove and remake
+- Also after clicking on a country in the map the bullet chart appears

@@ -1,4 +1,66 @@
-function MakeBarchart(dataset, countryname){
+function BarData(countries, all_cancers, cancer_frequency){
+	var nr_of_countries = countries.length
+
+	for (var i = 0; i < nr_of_countries; i ++){ 
+  		for (var j = 0; j < cancer_length; j++){
+  			if(countries[i] == all_cancers[j].COU){
+  				if (all_cancers[j].YEA == "2012"){
+	  				if(all_cancers[j].Variable == "Malignant neoplasms of lung" && all_cancers[j].Measure == "Incidence per 100 000 population"){
+	  					cancer_frequency[i][0] = parseFloat(parseFloat(all_cancers[j].Value).toFixed(1))
+	  				}
+	  				if(all_cancers[j].Variable == "Malignant neoplasms of colon" && all_cancers[j].Measure == "Incidence per 100 000 population"){
+	  					cancer_frequency[i][1] = parseFloat(parseFloat(all_cancers[j].Value).toFixed(1))
+	  				}
+	  				if(all_cancers[j].Variable == "Malignant neoplasms of female breast" && all_cancers[j].Measure == "Incidence per 100 000 females"){
+	  					cancer_frequency[i][2] = parseFloat(parseFloat(all_cancers[j].Value).toFixed(1))
+	  				}
+	  				if(all_cancers[j].Variable == "Malignant neoplasms of prostate" && all_cancers[j].Measure == "Incidence per 100 000 males"){
+	  					cancer_frequency[i][3] = parseFloat(parseFloat(all_cancers[j].Value).toFixed(1))
+	  					cancer_frequency[i][4] = all_cancers[j].Country
+	  				}
+	  			}
+  			}
+  		}
+  	}
+
+var lung = 0
+var colon = 0
+var breast = 0
+var pros = 0
+
+for (var i = 0; i < nr_of_countries; i++){
+	lung += cancer_frequency[i][0]
+	colon += cancer_frequency[i][1]
+	breast += cancer_frequency[i][2]
+	pros += cancer_frequency[i][3]
+}
+
+lung = parseFloat(parseFloat(lung / nr_of_countries).toFixed(1))
+colon = parseFloat(parseFloat(colon / nr_of_countries).toFixed(1))
+breast = parseFloat(parseFloat(breast / nr_of_countries).toFixed(1))
+pros = parseFloat(parseFloat(pros / nr_of_countries).toFixed(1))
+
+var name = "World"
+var World = [lung, colon, breast, pros, name]
+MakeBarchart(World, World[4], countries, cancer_frequency)
+
+d3.selectAll(".dropdown-item").on("click", function(){
+    var country = this.getAttribute("value");
+    if (country == "World"){
+    		UpdateBarchart(World, World[4])
+    	}
+    else{
+    for (var i = 0; i < countries.length; i++){
+    	if (country == countries[i]){
+    		console.log(cancer_frequency[i])
+    		UpdateBarchart(cancer_frequency[i], cancer_frequency[i][4])
+    	}
+    }
+    }
+  })
+}
+
+function MakeBarchart(dataset, countryname, countries, cancer_frequency){
 	// set width and height for the scatterplot
 	var h = 400;
 	var w = 600;
@@ -30,34 +92,35 @@ function MakeBarchart(dataset, countryname){
 		.text(countryname)
 		.attr('x', 300)
 		.attr('y', 30)
+		.attr('class', 'title')
 		.attr("font-family", "sans-serif")
    		.attr("font-size", "30px")
    		.attr("fill", "black");
 
    	svg.append("text")
 		.text("Lung")
-		.attr('x', 100)
+		.attr('x', 110)
 		.attr('y', 380)
 		.attr("font-family", "sans-serif")
    		.attr("fill", "black");
 
    	svg.append("text")
 		.text("Colon")
-		.attr('x', 200)
+		.attr('x', 210)
 		.attr('y', 380)
 		.attr("font-family", "sans-serif")
    		.attr("fill", "black");
    	
    	svg.append("text")
 		.text("Breast")
-		.attr('x', 300)
+		.attr('x', 310)
 		.attr('y', 380)
 		.attr("font-family", "sans-serif")
    		.attr("fill", "black");
    	
    	svg.append("text")
 		.text("Prostate")
-		.attr('x', 400)
+		.attr('x', 410)
 		.attr('y', 380)
 		.attr("font-family", "sans-serif")
    		.attr("fill", "black");
@@ -66,7 +129,7 @@ function MakeBarchart(dataset, countryname){
 	   .data(dataset)
 	   .enter()
 	   .append("rect")
-	   .attr("x", function(d, i) { return xscale(i)})
+	   .attr("x", function(d, i) { return xscale(i) +10})
 	   .attr("y", function(d){ return  yscale(d)})
 	   .attr("width", 80)
 	   .attr("height", function(d){ return h  - yscale(d) - h_padding})
@@ -82,7 +145,7 @@ function MakeBarchart(dataset, countryname){
 		.ticks(0);
 
 	svg.append("g")
-	    .attr("class", "axis")
+	    .attr("class", "x-axis")
 	    .attr("transform", "translate(0," + (h - h_padding) + ")")
 	    .call(xAxis);
 
@@ -92,7 +155,7 @@ function MakeBarchart(dataset, countryname){
 		.ticks(6);
 
   	svg.append("g")
-		.attr("class", "axis")
+		.attr("class", "y-axis")
 		.attr("transform", "translate(" + w_padding + ",0)")
 		.call(yAxis);
 
@@ -127,94 +190,37 @@ function UpdateBarchart(dataset, countryname){
         .nice();
 
 	var svg = d3.select("#barchart").select("svg")
-
-	svg.selectAll("rect").remove()
-	svg.selectAll("text").remove()
-	svg.selectAll("g").remove()
+	svg.select(".title").remove()
 
 	 svg.append("text")
 		.text(countryname)
 		.attr('x', 300)
 		.attr('y', 30)
+		.attr('class', 'title')
 		.attr("font-family", "sans-serif")
    		.attr("font-size", "30px")
    		.attr("fill", "black");
 
-   	svg.append("text")
-		.text("Lung")
-		.attr('x', 100)
-		.attr('y', 380)
-		.attr("font-family", "sans-serif")
-   		.attr("fill", "black");
-
-   	svg.append("text")
-		.text("Colon")
-		.attr('x', 200)
-		.attr('y', 380)
-		.attr("font-family", "sans-serif")
-   		.attr("fill", "black");
-   	
-   	svg.append("text")
-		.text("Breast")
-		.attr('x', 300)
-		.attr('y', 380)
-		.attr("font-family", "sans-serif")
-   		.attr("fill", "black");
-   	
-   	svg.append("text")
-		.text("Prostate")
-		.attr('x', 400)
-		.attr('y', 380)
-		.attr("font-family", "sans-serif")
-   		.attr("fill", "black");
-
+    svg.selectAll("rect")
+        .data(dataset)
+        .transition()
+        .duration(1000)
+	   	.attr("y", function(d){ return  yscale(d)})
+	   	.attr("height", function(d){ return h  - yscale(d) - h_padding})
+	
 	svg.selectAll("rect")
-	   .data(dataset)
-	   .enter()
-	   .append("rect")
-	   .attr("x", function(d, i) { return xscale(i)})
-	   .attr("y", function(d){ return  yscale(d)})
-	   .attr("width", 80)
-	   .attr("height", function(d){ return h  - yscale(d) - h_padding})
-	   .attr("fill", "#9e0142");
-
-  	svg.selectAll("rect")
-		.on("mouseover", HoverFunction)   		
+	   	.on("mouseover", HoverFunction)   		
     	.on("mouseout", HoverOut);
-
-	   var xAxis = d3.svg.axis()
-		.scale(xscale)
-		.orient("bottom")
-		.ticks(0);
-
-	svg.append("g")
-	    .attr("class", "axis")
-	    .attr("transform", "translate(0," + (h - h_padding) + ")")
-	    .call(xAxis);
 
  	var yAxis = d3.svg.axis()
 		.scale(yscale)
 		.orient("left")
 		.ticks(6);
-
-  	svg.append("g")
-		.attr("class", "axis")
-		.attr("transform", "translate(" + w_padding + ",0)")
-		.call(yAxis);
-
-	svg.append('text')
-		.attr('x', 10)
-		.attr('y', 10)
-		.attr('class', 'label')
-		.text('Cancer incidence per 100.000 citizens');
-
-	svg.selectAll("text")
-		.data(dataset)
-	   	.enter()
-	   	.append("text")
-		.text(function(d){ return d[4]})
-		.attr('x', 150)
-		.attr('y', 30);
+	
+	svg.select(".y-axis")
+    	.transition()
+    	.duration(1000)
+    	.call(yAxis)
 }
 
 function HoverFunction(d){
@@ -240,6 +246,4 @@ function HoverOut(){
     
     d3.select("#Hover")
     .remove()
-
-
 }

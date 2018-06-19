@@ -38,6 +38,7 @@ function ScatterData(calories, food_data, cancer_data){
 	return(food_and_patient)
 }
 
+// function to create scatterplot
 function MakeScatter(dataset, all_food){
 	// set width and height for the scatterplot
 	var h = 400;
@@ -58,27 +59,8 @@ function MakeScatter(dataset, all_food){
 		.attr("width", w)
 		.attr("height", h);
 
-	var max_x = d3.max(dataset, function(d) { return d[0]; })
-	max_x_up = Math.ceil(max_x / 100.0) * 100
-
-	var min_x = d3.min(dataset, function(d) { return d[0]; })
-	min_x_up = Math.floor(min_x / 100.0) * 100
-
-	var min_y = d3.min(dataset, function(d) { return d[1]; })
-	min_y_up = Math.floor(min_y / 1000.0) * 1000
-
-	var max_y = d3.max(dataset, function(d) { return d[1]; })
-	max_y_up = Math.ceil(max_y / 1000.0) * 1000
-
-	var xscale = d3.scale.linear()
-    	.domain([min_x_up, (max_x_up)])
-    	.range([w_padding, w - w_padding])
-    	.nice();
-
-    var yscale = d3.scale.linear()
-        .domain([min_y_up, max_y_up])
-        .range([h - h_padding, h_padding])
-        .nice();
+	var xscale = xScale(dataset, w, w_padding, h, h_padding)
+	var yscale = yScale(dataset, w, w_padding, h, h_padding)
 
 	svg.selectAll("circle")
 	   .data(dataset)
@@ -110,15 +92,6 @@ function MakeScatter(dataset, all_food){
 		.on("mouseover", HoverFunction)   		
     	.on("mouseout", HoverOut)
     	.on("click", function(d){
-    		d3.select("#Nametag").append("svg")
-			   	.append("text")
-				.text(d[3])
-				.attr('x', 300)
-				.attr('y', 30)
-				.attr("font-family", "sans-serif")
-		   		.attr("font-size", "30px")
-		   		.attr("fill", "black");
-    		console.log(all_food)
 			for (var i = 0; i < 44; i++){
 				if (all_food[0][i].COU == d[3]){
 					var data = [all_food[0][i].Value, all_food[1][i].Value,
@@ -127,7 +100,6 @@ function MakeScatter(dataset, all_food){
 				}
 			}
     		BulletData(data)
-    		// MakeBullet(new_bullet)
     	})
 	     
   	var xAxis = d3.svg.axis()
@@ -136,7 +108,7 @@ function MakeScatter(dataset, all_food){
 		.ticks(4);
 
 	svg.append("g")
-	    .attr("class", "axis")
+	    .attr("class", "x-axis")
 	    .attr("transform", "translate(0," + (h - h_padding) + ")")
 	    .call(xAxis);
 
@@ -146,27 +118,26 @@ function MakeScatter(dataset, all_food){
 		.ticks(4);
 
   	svg.append("g")
-		.attr("class", "axis")
+		.attr("class", "y-axis")
 		.attr("transform", "translate(" + w_padding + ",0)")
 		.call(yAxis);
 
 	svg.append('text')
 		.attr('x', 10)
 		.attr('y', 10)
-		.attr('class', 'label')
+		.attr('class', 'y-label')
 		.text('Kilocalories (per capita per day)');
 
 	svg.append('text')
-		.attr('x', w)
+		.attr('x', w- 100)
 		.attr('y', h - 10)
 		.attr('text-anchor', 'end')
-		.attr('class', 'label')
+		.attr('class', 'x-label')
 		.text('Grammes of fat (per capita per day)');   
 }
 
+// function to show data on hover
 function HoverFunction(d){
-	
-	// LightUp(d[3], d[2])
 	// determine the x and y position you hover over 
 	var yPos = parseFloat(d3.select(this).attr("cy"))
 	var xPos = parseFloat(d3.select(this).attr("cx"))
@@ -191,11 +162,13 @@ function HoverFunction(d){
 		y: yPos
 	})
 	   .text(d[1])
+   
    // make the dot bigger
 	d3.select(this)
 	    .attr("r", 10)
 }
 
+// function to delete text after hover leaves
 function HoverOut(){
 	d3.select(this)
 		.transition().delay(300)
@@ -209,8 +182,8 @@ function HoverOut(){
     .remove()
 }
 
+// function to update scatterplot after the data selected changes
 function UpdateScatter(dataset, food, unit, data_type, all_food){
-	console.log(all_food)
 	// set width and height for the scatterplot
 	var h = 400;
 	var w = 600;
@@ -237,45 +210,24 @@ function UpdateScatter(dataset, food, unit, data_type, all_food){
 		var color_high = "#de2d26"
 		var color_highest = "#a50f15"
 	} 
-	
-	svg = d3.select("#scatter").select("svg")
 
-	svg.selectAll("circle").remove()
-	svg.selectAll("text").remove()
-	svg.selectAll("g").remove()
+	var xscale = xScale(dataset, w, w_padding, h, h_padding)
+	var yscale = yScale(dataset, w, w_padding, h, h_padding)
 
-	var max_x = d3.max(dataset, function(d) { return d[0]; })
-	max_x_up = Math.ceil(max_x / 100.0) * 100
-
-	var min_x = d3.min(dataset, function(d) { return d[0]; })
-	min_x_up = Math.floor(min_x / 100.0) * 100
-
-	var min_y = d3.min(dataset, function(d) { return d[1]; })
-	min_y_up = Math.floor(min_y / 1000.0) * 1000
-
-	var max_y = d3.max(dataset, function(d) { return d[1]; })
-	max_y_up = Math.ceil(max_y / 1000.0) * 1000
-
-	var xscale = d3.scale.linear()
-    	.domain([min_x_up, (max_x_up)])
-    	.range([w_padding, w - w_padding])
-
-    var yscale = d3.scale.linear()
-        .domain([min_y_up, max_y_up])
-        .range([h - h_padding, h_padding])
-
-	svg.selectAll("circle")
-	   .data(dataset)
-	   .enter()
-	   .append("circle")
-	   .attr("cx", function(d) { 
-	        return xscale(d[0]);
-	   })
-	   .attr("cy", function(d) {
-	        return yscale(d[1]);
-	   })
-	   .attr("r", 5)
-	   .attr("fill", function(d){
+   	// update scatterplot
+    svg = d3.select("#scatter").select("svg")
+    svg.selectAll("circle")
+          .data(dataset)
+          .transition()
+          .duration(1000)
+          .attr("cx", function(d) {
+               return xscale(d[0]);
+          })
+          .attr("cy", function(d) {
+               return yscale(d[1]);
+          })
+          .attr("r", 5)
+          .attr("fill", function(d){
 			if(d[2] < 10){
 				return color_low
 			}
@@ -288,22 +240,12 @@ function UpdateScatter(dataset, food, unit, data_type, all_food){
 			if(d[2] > 35){
 				return color_highest
 			}
-		});
+		})
 
 	svg.selectAll("circle")
 		.on("mouseover", HoverFunction)   		
     	.on("mouseout", HoverOut)
     	.on("click", function(d){
-    		console.log(all_food)
-    		d3.select("#Nametag").append("svg")
-			   	.append("text")
-				.text(d[3])
-				.attr('x', 300)
-				.attr('y', 30)
-				.attr("font-family", "sans-serif")
-		   		.attr("font-size", "30px")
-		   		.attr("fill", "black");
-    		console.log(all_food)
 			for (var i = 0; i < 44; i++){
 				if (all_food[0][i].COU == d[3]){
 					var data = [all_food[0][i].Value, all_food[1][i].Value,
@@ -314,37 +256,55 @@ function UpdateScatter(dataset, food, unit, data_type, all_food){
 			}
     		BulletData(data)
     	});
-	     
-  	var xAxis = d3.svg.axis()
+
+ var xAxis = d3.svg.axis()
 		.scale(xscale)
 		.orient("bottom")
 		.ticks(4);
 
-	svg.append("g")
-	    .attr("class", "axis")
-	    .attr("transform", "translate(0," + (h - h_padding) + ")")
-	    .call(xAxis);
+  svg.select(".x-axis")
+      .transition()
+      .duration(1000)
+      .call(xAxis)
 
- 	var yAxis = d3.svg.axis()
-		.scale(yscale)
-		.orient("left")
-		.ticks(4);
-
-  	svg.append("g")
-		.attr("class", "axis")
-		.attr("transform", "translate(" + w_padding + ",0)")
-		.call(yAxis);
-
+  svg.select(".x-label").remove()
+	
 	svg.append('text')
-		.attr('x', 10)
-		.attr('y', 10)
-		.attr('class', 'label')
-		.text('Kilocalories (per capita per day)');
-
-	svg.append('text')
-		.attr('x', w)
+		.attr('x', w -100)
 		.attr('y', h - 10)
 		.attr('text-anchor', 'end')
-		.attr('class', 'label')
+		.attr('class', 'x-label')
 		.text(food + ' (' + unit + ")");   
-}
+ }
+
+// function to create x scale
+ function xScale(dataset, w, w_padding, h, h_padding){
+ 	var max_x = d3.max(dataset, function(d) { return d[0]; })
+	max_x_up = Math.ceil(max_x / 100.0) * 100
+
+	var min_x = d3.min(dataset, function(d) { return d[0]; })
+	min_x_up = Math.floor(min_x / 100.0) * 100
+
+	var xscale = d3.scale.linear()
+    	.domain([min_x_up, (max_x_up)])
+    	.range([w_padding, w - w_padding])
+    	.nice()
+
+    return xscale
+ }
+
+ // function to create y scale
+function yScale(dataset, w, w_padding, h, h_padding){
+ 	var min_y = d3.min(dataset, function(d) { return d[1]; })
+	min_y_up = Math.floor(min_y / 1000.0) * 1000
+
+	var max_y = d3.max(dataset, function(d) { return d[1]; })
+	max_y_up = Math.ceil(max_y / 1000.0) * 1000
+
+	var yscale = d3.scale.linear()
+        .domain([min_y_up, max_y_up])
+        .range([h - h_padding, h_padding])
+        .nice()
+
+   return yscale
+  }
