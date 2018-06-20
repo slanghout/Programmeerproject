@@ -34,7 +34,7 @@ function MapData(patient_info, x){
 }
 
 // Function to select the colors and initiate making of map
-function MakeMap(all_food, patient_info, data_type){	
+function CreateMap(all_food, patient_info, data_type, all_food_data){	
 	var data_map = MapData(patient_info, data_type)
 
 	if (data_type == 0){
@@ -69,18 +69,17 @@ function MakeMap(all_food, patient_info, data_type){
     }
 
 	RemoveMap()
-	CreateMap(data_map, fills, all_food)
+	MakeMap(data_map, fills, all_food, all_food_data)
 }
 
 // function to draw the map
-function CreateMap(data_map, fills, all_food) {
+function MakeMap(data_map, fills, all_food, all_food_data) {
   var map = new Datamap({element: document.getElementById('my-map'),
 	fills: fills,
         data: data_map,
          done: function(datamap){
 				 datamap.svg.selectAll(".datamaps-subunit").on("click", function(geography){
 					 var location = geography.id
-					 console.log(geography.id)
 					 for (var i = 0; i < 44; i++){
 						if (all_food[0][i].COU == geography.id){
 							var data = [all_food[0][i].Value, all_food[1][i].Value,
@@ -89,12 +88,11 @@ function CreateMap(data_map, fills, all_food) {
 							all_food[0][i].Country]
 						}
 					}
-    				BulletData(data)			 	
+    				MakeBullet(data, all_food_data)			 	
 					})
 			 },
          geographyConfig: {
             popupTemplate: function LightUp(geo, data_map) {
-            	console.log(geo)
             	if (!data_map){
 					 return ['<div class="hoverinfo"><strong>',
 									 'There is no data available for ' + geo.properties.name,

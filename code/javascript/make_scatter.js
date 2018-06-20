@@ -39,7 +39,7 @@ function ScatterData(calories, food_data, cancer_data){
 }
 
 // function to create scatterplot
-function MakeScatter(dataset, all_food){
+function MakeScatter(dataset, all_food, all_food_data){
 	// set width and height for the scatterplot
 	var h = 400;
 	var w = 600;
@@ -99,7 +99,7 @@ function MakeScatter(dataset, all_food){
 						all_food[4][i].Value,all_food[5][i].Value, all_food[0][i].Country]
 				}
 			}
-    		BulletData(data)
+    		MakeBullet(data, all_food_data)
     	})
 	     
   	var xAxis = d3.svg.axis()
@@ -133,7 +133,7 @@ function MakeScatter(dataset, all_food){
 		.attr('y', h - 10)
 		.attr('text-anchor', 'end')
 		.attr('class', 'x-label')
-		.text('Grammes of fat (per capita per day)');   
+		.text('Grammes of protein (per capita per day)');   
 }
 
 // function to show data on hover
@@ -183,7 +183,7 @@ function HoverOut(){
 }
 
 // function to update scatterplot after the data selected changes
-function UpdateScatter(dataset, food, unit, data_type, all_food){
+function UpdateScatter(dataset, food, unit, data_type, all_food, all_food_data){
 	// set width and height for the scatterplot
 	var h = 400;
 	var w = 600;
@@ -254,7 +254,8 @@ function UpdateScatter(dataset, food, unit, data_type, all_food){
 						all_food[0][i].Country]
 				}
 			}
-    		BulletData(data)
+    		console.log(all_food_data)
+    		MakeBullet(data, all_food_data)
     	});
 
  var xAxis = d3.svg.axis()
@@ -267,14 +268,10 @@ function UpdateScatter(dataset, food, unit, data_type, all_food){
       .duration(1000)
       .call(xAxis)
 
-  svg.select(".x-label").remove()
-	
-	svg.append('text')
-		.attr('x', w -100)
-		.attr('y', h - 10)
-		.attr('text-anchor', 'end')
-		.attr('class', 'x-label')
-		.text(food + ' (' + unit + ")");   
+  svg.select(".x-label")
+  	.transition()
+    .duration(1000)
+	.text(food + ' (' + unit + ")");   
  }
 
 // function to create x scale

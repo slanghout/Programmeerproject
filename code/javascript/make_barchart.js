@@ -52,7 +52,6 @@ d3.selectAll(".dropdown-item").on("click", function(){
     else{
     for (var i = 0; i < countries.length; i++){
     	if (country == countries[i]){
-    		console.log(cancer_frequency[i])
     		UpdateBarchart(cancer_frequency[i], cancer_frequency[i][4])
     	}
     }
@@ -70,8 +69,7 @@ function MakeBarchart(dataset, countryname, countries, cancer_frequency){
 	var h_padding = 40;
 
 	var max_y = d3.max(dataset, function(d) { return d; })
-
-	var min_y = d3.min(dataset, function(d) { return d; })
+	max_y_up = Math.ceil(max_y / 20.0) * 20
 
 	var xscale = d3.scale.linear()
     	.domain([0, 4])
@@ -79,7 +77,7 @@ function MakeBarchart(dataset, countryname, countries, cancer_frequency){
     	.nice();
 
     var yscale = d3.scale.linear()
-        .domain([0, max_y])
+        .domain([0, max_y_up])
         .range([h - h_padding, h_padding])
         .nice();
 
@@ -99,28 +97,28 @@ function MakeBarchart(dataset, countryname, countries, cancer_frequency){
 
    	svg.append("text")
 		.text("Lung")
-		.attr('x', 110)
+		.attr('x', 125)
 		.attr('y', 380)
 		.attr("font-family", "sans-serif")
    		.attr("fill", "black");
 
    	svg.append("text")
 		.text("Colon")
-		.attr('x', 210)
+		.attr('x', 225)
 		.attr('y', 380)
 		.attr("font-family", "sans-serif")
    		.attr("fill", "black");
    	
    	svg.append("text")
 		.text("Breast")
-		.attr('x', 310)
+		.attr('x', 325)
 		.attr('y', 380)
 		.attr("font-family", "sans-serif")
    		.attr("fill", "black");
    	
    	svg.append("text")
 		.text("Prostate")
-		.attr('x', 410)
+		.attr('x', 425)
 		.attr('y', 380)
 		.attr("font-family", "sans-serif")
    		.attr("fill", "black");
@@ -176,8 +174,7 @@ function UpdateBarchart(dataset, countryname){
 	var h_padding = 40;
 
 	var max_y = d3.max(dataset, function(d) { return d; })
-
-	var min_y = d3.min(dataset, function(d) { return d; })
+	max_y_up = Math.ceil(max_y / 20.0) * 20
 
 	var xscale = d3.scale.linear()
     	.domain([0, 4])
@@ -185,21 +182,14 @@ function UpdateBarchart(dataset, countryname){
     	.nice();
 
     var yscale = d3.scale.linear()
-        .domain([0, max_y])
+        .domain([0, max_y_up])
         .range([h - h_padding, h_padding])
         .nice();
 
 	var svg = d3.select("#barchart").select("svg")
-	svg.select(".title").remove()
 
-	 svg.append("text")
+	 svg.select(".title")
 		.text(countryname)
-		.attr('x', 300)
-		.attr('y', 30)
-		.attr('class', 'title')
-		.attr("font-family", "sans-serif")
-   		.attr("font-size", "30px")
-   		.attr("fill", "black");
 
     svg.selectAll("rect")
         .data(dataset)

@@ -3,8 +3,8 @@ body{
 	font-family: sans-serif;
 }
 .jumbotron {
-height: 200px;
-font-family: sans-serif;
+    height: 200px;
+    font-family: sans-serif;
 
 }
 h5{
@@ -102,4 +102,9 @@ h5{
     -webkit-border-radius: 6px 0 6px 6px;
     -moz-border-radius: 6px 0 6px 6px;
     border-radius: 6px 0 6px 6px;
+}
+#information{
+    font-style: bold;
+    font-size: 12px;
+    color: grey;
 }

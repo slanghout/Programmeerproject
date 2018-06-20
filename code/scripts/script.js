@@ -68,15 +68,16 @@ function MakeMyProject(error, Food_supply, patients, obesity, deceased) {
   all_veggies = [];
 
   food_length = Food_supply.length
+  
   for (var element = 0; element < food_length; element ++){
     if(Food_supply[element].YEA == "2012"){
       if (Food_supply[element].Variable == "Total fat supply"){
         fat.push(Food_supply[element])
-        all_fat.push(Food_supply[element].Value);
+        all_fat.push(parseFloat(Food_supply[element].Value));
       }
       else if(Food_supply[element].Variable == "Total protein supply"){
         protein.push(Food_supply[element])
-        all_protein.push(Food_supply[element].Value);
+        all_protein.push(parseFloat(Food_supply[element].Value));
       }
       else if(Food_supply[element].Variable == "Total calories supply"){
         calories.push(Food_supply[element])
@@ -88,11 +89,11 @@ function MakeMyProject(error, Food_supply, patients, obesity, deceased) {
       }
       else if(Food_supply[element].Variable == "Fruits supply"){
         fruit.push(Food_supply[element])
-        all_fruit.push(Food_supply[element].Value);
+        all_fruit.push(parseFloat(Food_supply[element].Value));
       }
       else if(Food_supply[element].Variable == "Vegetables supply"){
         veggies.push(Food_supply[element])
-        all_veggies.push(Food_supply[element].Value);
+        all_veggies.push(parseFloat(Food_supply[element].Value));
       }
     }
   }
@@ -100,18 +101,18 @@ function MakeMyProject(error, Food_supply, patients, obesity, deceased) {
   var all_food = [calories, protein, fat, sugar, fruit, veggies]
   var all_food_data = [all_calories, all_protein, all_fat,all_sugar, all_fruit, all_veggies]
 
-  MakeMap(all_food, patient_info, data_type);
-  MakeScatter(ScatterData(calories, fat, patient_info[data_type]), all_food)
+  CreateMap(all_food, patient_info, data_type, all_food_data);
+  MakeScatter(ScatterData(calories, protein, patient_info[data_type]), all_food, all_food_data)
   
-  var food_selected = fat
-  var food_info = ["Grammes of fat", "per capita per day"]
+  var food_selected = protein
+  var food_info = ["Grammes of protein", "per capita per day"]
 
   d3.selectAll(".dropdown-item").on("click", function(){
     var value = this.getAttribute("value")
     data_type = value;
-    MakeMap(all_food, patient_info, data_type)
-    var this_data = ScatterData(calories, food_selected, patient_info[data_type])
-    UpdateScatter(this_data, food_info[0], food_info[1] , data_type, all_food);
+    CreateMap(all_food, patient_info, data_type, all_food_data)
+    var scatter_data = ScatterData(calories, food_selected, patient_info[data_type])
+    UpdateScatter(scatter_data, food_info[0], food_info[1] , data_type, all_food, all_food_data);
 
   })
     
@@ -138,7 +139,7 @@ function MakeMyProject(error, Food_supply, patients, obesity, deceased) {
         food_info = ["Kilos of vegetables", "per capita per year"]
       }
       var this_data = ScatterData(calories, food_selected, patient_info[data_type])
-      UpdateScatter(this_data, food_info[0], food_info[1] , data_type, all_food);
+      UpdateScatter(this_data, food_info[0], food_info[1] , data_type, all_food, all_food_data);
     })
     
  }  

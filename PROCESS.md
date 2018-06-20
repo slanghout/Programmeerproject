@@ -55,3 +55,6 @@
 - Also after clicking on a country in the map the bullet chart appears
 
 ## Day 13
+- Hover at bullet chart to give information on what the data in the bullet chart tells you
+- Information for index page started
+- Discussed change of graph info initiated last week compared to what I wanted at beginning
