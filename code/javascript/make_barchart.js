@@ -123,19 +123,21 @@ function MakeBarchart(dataset, countryname, countries, cancer_frequency){
 		.attr("font-family", "sans-serif")
    		.attr("fill", "black");
 
+    var data = [dataset[0], dataset[1], dataset[2], dataset[3]]
     svg.selectAll("rect")
-	   .data(dataset)
+	   .data(data)
 	   .enter()
 	   .append("rect")
 	   .attr("x", function(d, i) { return xscale(i) +10})
-	   .attr("y", function(d){ return  yscale(d)})
+	   .attr("y", function(d){ return yscale(d)})
 	   .attr("width", 80)
 	   .attr("height", function(d){ return h  - yscale(d) - h_padding})
 	   .attr("fill", "#9e0142");
 
 	svg.selectAll("rect")
 		.on("mouseover", HoverFunction)   		
-    	.on("mouseout", HoverOut);
+    	.on("mouseout", HoverOut)
+    	.on("click", ClickFunction);
 
 	   var xAxis = d3.svg.axis()
 		.scale(xscale)
@@ -200,7 +202,8 @@ function UpdateBarchart(dataset, countryname){
 	
 	svg.selectAll("rect")
 	   	.on("mouseover", HoverFunction)   		
-    	.on("mouseout", HoverOut);
+    	.on("mouseout", HoverOut)
+    	.on("click", ClickFunction);
 
  	var yAxis = d3.svg.axis()
 		.scale(yscale)
@@ -236,4 +239,14 @@ function HoverOut(){
     
     d3.select("#Hover")
     .remove()
+}
+
+function ClickFunction(d, i){
+	if (i == 2){
+		window.open("https://www.pinkribbon.nl/")
+	}
+	else{
+		window.open("https://www.kwf.nl/")
+
+	}
 }

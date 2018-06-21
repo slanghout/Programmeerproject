@@ -101,7 +101,7 @@ function MakeMyProject(error, Food_supply, patients, obesity, deceased) {
   var all_food = [calories, protein, fat, sugar, fruit, veggies]
   var all_food_data = [all_calories, all_protein, all_fat,all_sugar, all_fruit, all_veggies]
 
-  CreateMap(all_food, patient_info, data_type, all_food_data);
+  MakeMap(patient_info, data_type, all_food, all_food_data);
   MakeScatter(ScatterData(calories, protein, patient_info[data_type]), all_food, all_food_data)
   
   var food_selected = protein
@@ -110,7 +110,7 @@ function MakeMyProject(error, Food_supply, patients, obesity, deceased) {
   d3.selectAll(".dropdown-item").on("click", function(){
     var value = this.getAttribute("value")
     data_type = value;
-    CreateMap(all_food, patient_info, data_type, all_food_data)
+    UpdateMap(patient_info, data_type, all_food, all_food_data)
     var scatter_data = ScatterData(calories, food_selected, patient_info[data_type])
     UpdateScatter(scatter_data, food_info[0], food_info[1] , data_type, all_food, all_food_data);
 

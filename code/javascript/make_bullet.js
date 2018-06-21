@@ -52,8 +52,6 @@ function BulletData(data, all_food_data){
 
 // function to make the bullet
 function MakeBullet(data, all_food_data){
-
-  console.log(all_food_data)
   var country = data[6]
   var data = BulletData(data, all_food_data)
 
@@ -101,23 +99,27 @@ function MakeBullet(data, all_food_data){
     .text(country);
 }
 
-function Infobox(){
+function Infobox(d){
 
   d3.select("#information")
     .append("text")
     .attr("class", "infobox")
     .attr('x', 100)
     .attr('y', 100)
-    .text("This bullet chart shows the food supply\
-      against what the minimum and maximum of all countries are \
-      ,displayed by the black lines, and what the recommended daily\
-       intake should be according to the healthy standards. \
+    .text("This bullet chart shows the food supply of different\
+       food types. The black lines display the minimum and maxiumum \
+       of all countries. The bar shows the recommended daily intake. \
       Light blue displays below the recommended intake, and dark blue \
       above the recommended intake. The bar shows what the supply for\
        the country selected is. Sources: \
        http://healthyeating.sfgate.com/daily-amounts-carbs-fat-fiber-sodium-protein-4230.html , \
        https://www.healthline.com/nutrition/how-much-sugar-per-day#section3 , \
       https://www.ahealthylife.nl/hoeveel-fruit-per-dag-is-het-gezondst/");
+
+    if (d.measures < d.markers[0]){
+      console.log("OH NO")
+    }
+
 }
 
 function exit(){

@@ -34,8 +34,8 @@ function MapData(patient_info, x){
 }
 
 // Function to select the colors and initiate making of map
-function CreateMap(all_food, patient_info, data_type, all_food_data){	
-	var data_map = MapData(patient_info, data_type)
+function CreateColorMap(data_type){	
+	// var data_map = MapData(patient_info, data_type)
 
 	if (data_type == 0){
       var fills= {
@@ -68,12 +68,14 @@ function CreateMap(all_food, patient_info, data_type, all_food_data){
          }
     }
 
-	RemoveMap()
-	MakeMap(data_map, fills, all_food, all_food_data)
+    return fills 
 }
 
 // function to draw the map
-function MakeMap(data_map, fills, all_food, all_food_data) {
+function MakeMap(patient_info, data_type, all_food, all_food_data) {
+  var data_map = MapData(patient_info, data_type)
+  var fills = CreateColorMap(data_type)
+
   var map = new Datamap({element: document.getElementById('my-map'),
 	fills: fills,
         data: data_map,
@@ -116,8 +118,15 @@ function MakeMap(data_map, fills, all_food, all_food_data) {
   
 };
 
+function UpdateMap(patient_info, data_type, all_food, all_food_data){
+    RemoveMap()
+    MakeMap(patient_info, data_type, all_food, all_food_data)
+}
+
+
 // function to remove any prior map
 function RemoveMap(){
 	d3.select(".datamaps-legend").remove()
-	d3.select("#my-map").select("svg").remove()
+    d3.select("#my-map").select("svg").remove()
+
 }

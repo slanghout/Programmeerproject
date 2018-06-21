@@ -25,7 +25,8 @@ function ScatterData(calories, food_data, cancer_data){
 				food_and_patient[i][1] = (parseFloat(calories[j].Value));
 			}
 			if (cancer_data[j].COU == countries[i]){
-				food_and_patient[i][2] = (parseFloat(cancer_data[j].Value));
+				food_and_patient[i][2] = (parseFloat(cancer_data[j].Value))
+				;
 			}
 			if (cancer_data[j].COU == countries[i]){
 				food_and_patient[i][3] = ((cancer_data[j].COU));
@@ -141,7 +142,7 @@ function HoverFunction(d){
 	// determine the x and y position you hover over 
 	var yPos = parseFloat(d3.select(this).attr("cy"))
 	var xPos = parseFloat(d3.select(this).attr("cx"))
-
+	console.log(d)
 	d3.select("#scatter").select("svg").append("text").attr({
 		id: "Hover",
 		x: 150,
@@ -151,17 +152,10 @@ function HoverFunction(d){
 
 	 d3.select("#scatter").select("svg").append("text").attr({
 		id: "Hover_x",
-		x: xPos,
-		y: 355
+		x: xPos + 10,
+		y: yPos + 10
 	})
-	   .text(d[0])
-
-  	d3.select("#scatter").select("svg").append("text").attr({
-		id: "Hover_y",
-		x: 100,
-		y: yPos
-	})
-	   .text(d[1])
+	   .text(d[0]+ ", " + d[1])
    
    // make the dot bigger
 	d3.select(this)
@@ -177,8 +171,6 @@ function HoverOut(){
     d3.select("#Hover")
     .remove()
     d3.select("#Hover_x")
-    .remove()
-    d3.select("#Hover_y")
     .remove()
 }
 
