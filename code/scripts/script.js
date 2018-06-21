@@ -10,10 +10,10 @@ window.onload = function() {
 
 // load in the needed json files
 queue()
-	.defer(d3.json, 'data/Food_supply.json')
-	.defer(d3.json, 'data/patients.json')
-	.defer(d3.json, 'data/obesity.json')
-	.defer(d3.json, 'data/deceased.json')
+	.defer(d3.json, '../data/Food_supply.json')
+	.defer(d3.json, '../data/patients.json')
+	.defer(d3.json, '../data/obesity.json')
+	.defer(d3.json, '../data/deceased.json')
 	.await(MakeMyProject);
 
 };

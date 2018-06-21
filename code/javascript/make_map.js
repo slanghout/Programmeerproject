@@ -90,7 +90,12 @@ function MakeMap(patient_info, data_type, all_food, all_food_data) {
 							all_food[0][i].Country]
 						}
 					}
-    				MakeBullet(data, all_food_data)			 	
+    				if (d3.select("#bullet").selectAll("svg")[0].length == 0){
+                        MakeBullet(data, all_food_data)
+                    }
+                    else if (d3.select("#bullet").selectAll("svg")[0].length != 0){
+                         UpdateBullet(data, all_food_data)
+                    }			 	
 					})
 			 },
          geographyConfig: {

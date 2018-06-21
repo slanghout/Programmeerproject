@@ -100,7 +100,13 @@ function MakeScatter(dataset, all_food, all_food_data){
 						all_food[4][i].Value,all_food[5][i].Value, all_food[0][i].Country]
 				}
 			}
-    		MakeBullet(data, all_food_data)
+			if (d3.select("#bullet").selectAll("svg")[0].length == 0){
+				MakeBullet(data, all_food_data)
+			}
+			else if (d3.select("#bullet").selectAll("svg")[0].length != 0){
+				UpdateBullet(data, all_food_data)
+			}
+    		
     	})
 	     
   	var xAxis = d3.svg.axis()
@@ -233,22 +239,6 @@ function UpdateScatter(dataset, food, unit, data_type, all_food, all_food_data){
 				return color_highest
 			}
 		})
-
-	svg.selectAll("circle")
-		.on("mouseover", HoverFunction)   		
-    	.on("mouseout", HoverOut)
-    	.on("click", function(d){
-			for (var i = 0; i < 44; i++){
-				if (all_food[0][i].COU == d[3]){
-					var data = [all_food[0][i].Value, all_food[1][i].Value,
-						all_food[2][i].Value, all_food[3][i].Value,
-						all_food[4][i].Value, all_food[5][i].Value,
-						all_food[0][i].Country]
-				}
-			}
-    		console.log(all_food_data)
-    		MakeBullet(data, all_food_data)
-    	});
 
  var xAxis = d3.svg.axis()
 		.scale(xscale)

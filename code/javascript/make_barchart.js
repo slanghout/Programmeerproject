@@ -199,11 +199,6 @@ function UpdateBarchart(dataset, countryname){
         .duration(1000)
 	   	.attr("y", function(d){ return  yscale(d)})
 	   	.attr("height", function(d){ return h  - yscale(d) - h_padding})
-	
-	svg.selectAll("rect")
-	   	.on("mouseover", HoverFunction)   		
-    	.on("mouseout", HoverOut)
-    	.on("click", ClickFunction);
 
  	var yAxis = d3.svg.axis()
 		.scale(yscale)
