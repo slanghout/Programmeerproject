@@ -8,7 +8,7 @@ Sylvie Langhout
 # My idea
 This datavisualisation will display colorectal cancer frequence against fat, protein and sugar food consumption. This can show what type of food consuption may lead to a higher chance of colorectal cancer. 
 
-![](doc/chart_visualistion_final.png)
+![](doc/chart_visualistion_final.jpg)
 
 # Features:
 - A map with a hover over function to display the prevalence of colorectal cancer in different countries, year can be changed by a dropdown menu
