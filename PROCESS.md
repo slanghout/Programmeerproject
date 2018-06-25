@@ -58,3 +58,16 @@
 - Hover at bullet chart to give information on what the data in the bullet chart tells you
 - Information for index page started
 - Discussed change of graph info initiated last week compared to what I wanted at beginning
+
+## Day 14
+- Sources HTML made
+- Commented and cleaned out code
+
+## Day 15
+- Commented and cleaned out code
+- Looked at style for final version
+
+## Day 16
+- Hover over map shows the bullets
+- Colors of the bullet chart correspond to data
+- Commented and cleaned out code

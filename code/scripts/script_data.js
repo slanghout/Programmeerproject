@@ -1,19 +1,18 @@
-// Sylvie Langhout
-// 10792368
-// 
-// project.js
-// File with the functions for D3 Map with charts
+/* Sylvie Langhout
+* 10792368
+* script_data.js
+* Functions to load data, initialize project and update interactivity
+*/
 
 window.onload = function() {
-
-  console.log('Lets GO GO GO!');
+    console.log('Lets GO GO GO!');
 
 // load in the needed json files
 queue()
-	.defer(d3.json, '../data/Food_supply.json')
-	.defer(d3.json, '../data/patients.json')
-	.defer(d3.json, '../data/obesity.json')
-	.defer(d3.json, '../data/deceased.json')
+	.defer(d3.json, '../../data/Food_supply.json')
+	.defer(d3.json, '../../data/patients.json')
+	.defer(d3.json, '../../data/obesity.json')
+	.defer(d3.json, '../../data/deceased.json')
 	.await(MakeMyProject);
 
 };
@@ -102,7 +101,7 @@ function MakeMyProject(error, Food_supply, patients, obesity, deceased) {
   var all_food_data = [all_calories, all_protein, all_fat,all_sugar, all_fruit, all_veggies]
 
   MakeMap(patient_info, data_type, all_food, all_food_data);
-  MakeScatter(ScatterData(calories, protein, patient_info[data_type]), all_food, all_food_data)
+  MakeScatter(ScatterData(calories, protein, patient_info[data_type]), all_food, all_food_data, data_type)
   
   var food_selected = protein
   var food_info = ["Grammes of protein", "per capita per day"]

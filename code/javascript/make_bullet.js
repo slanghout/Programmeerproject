@@ -1,8 +1,8 @@
-// Sylvie Langhout
-// 10792368
-// 
-// make_bullet.js
-// Function to make and update bullet chart
+/* Sylvie Langhout
+* 10792368
+* make_bullet.js
+* Functions to make and update bullet chart
+*/
 
 // function to create data needed for bullet chart
 function BulletData(data, all_food_data){
@@ -50,119 +50,90 @@ function SetBounds(data, x){
 // function to make the bullet
 function MakeBullet(data, all_food_data){
   
-  // select data
-  var country = data[6];
-  var data = BulletData(data, all_food_data);
+  if (data != undefined){
 
-  // set margins
-  var margin = {top: 5, right: 40, bottom: 20, left: 150},
-    width = 800 - margin.left - margin.right,
-    height = 50 - margin.top - margin.bottom;
+    // select data
+    var country = data[6];
+    var data = BulletData(data, all_food_data);
 
-  // set width and height of chart
-  var chart = d3.bullet()
-    .width(width)
-    .height(height);
+    // set margins
+    var margin = {top: 5, right: 40, bottom: 20, left: 150},
+      width = 800 - margin.left - margin.right,
+      height = 50 - margin.top - margin.bottom;
 
-  // create bullet chart
-  var svg = d3.select("#bullet").selectAll("svg")
-      .data(data)
-      .enter()
-      .append("svg")
-      .attr("class", "bullet")
-      .attr("width", width + margin.left + margin.right)
-      .attr("height", height + margin.top + margin.bottom)
-      .append("g")
-      .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-      .call(chart);
-      // .on("mouseover", Infobox)
-      // .on("mouseout", exit);
+    // set width and height of chart
+    var chart = d3.bullet()
+      .width(width)
+      .height(height);
 
-  // create title
-  var title = svg.append("g")
-      .style("text-anchor", "end")
-      .attr("transform", "translate(-6," + height / 2 + ")");
+    // create bullet chart
+    var svg = d3.select("#bullet").selectAll("svg")
+        .data(data)
+        .enter()
+        .append("svg")
+        .attr("class", "bullet")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+        .call(chart);
 
-  // print title text
-  title.append("text")
-      .attr("class", "title")
-      .text(function(d) { return d.title; });
+    svg.select(".measure")
+      .style("fill", function(d){
+        if (parseFloat(d.measures) < parseFloat(d.ranges[1]) && parseFloat(d.measures) > parseFloat(d.ranges[0])){
+          return "#74c476" 
+        }
+        else{
+          return "#ef3b2c"
+        }
+      })
+      .style("opacity", 0.7)
 
-  // create subtitle text
-  title.append("text")
-      .attr("class", "subtitle")
-      .attr("dy", "1em")
-      .text(function(d) { return d.subtitle; });
+    // create title
+    var title = svg.append("g")
+        .style("text-anchor", "end")
+        .attr("transform", "translate(-6," + height / 2 + ")");
 
-  // create country title 
-  d3.select("#info")
-    .append("h3")
-    .attr("class", "countrytitle")
-    .attr('x', 100)
-    .attr('y', 10)
-    .text(country);
+    // print title text
+    title.append("text")
+        .attr("class", "title")
+        .text(function(d) { return d.title; });
 
-  // create info box about the bullet chart
-  d3.select("#datainfo")
-    .append("text")
-    .attr("class", "infobox")
-    .attr('x', 100)
-    .attr('y', 50)
-    .text("This bullet chart shows the food supply of different \
-      food types. The black lines display the minimum and maxiumum \
-      of all countries. The bar shows the recommended daily intake. \
-      Light blue displays below the recommended intake, and dark blue \
-      above the recommended intake. The bar shows what the supply for \
-      the country selected is. Sources: \
-      http://healthyeating.sfgate.com/daily-amounts-carbs-fat-fiber-sodium-protein-4230.html, \
-      https://www.healthline.com/nutrition/how-much-sugar-per-day#section3, \
-      https://www.ahealthylife.nl/hoeveel-fruit-per-dag-is-het-gezondst/")
-    .style("font-size", "12px")
-    .style("color", "grey")
-    .append("br");
+    // create subtitle text
+    title.append("text")
+        .attr("class", "subtitle")
+        .attr("dy", "1em")
+        .text(function(d) { return d.subtitle; });
+
+    // create country title 
+    d3.select("#info")
+      .append("h3")
+      .attr("class", "countrytitle")
+      .attr('x', 100)
+      .attr('y', 10)
+      .text(country);
+
+    // create info box about the bullet chart
+    d3.select("#datainfo")
+      .append("text")
+      .attr("class", "infobox")
+      .attr('x', 100)
+      .attr('y', 50)
+      .text("This bullet chart shows the food supply of different \
+        food types. The black lines display the minimum and maxiumum \
+        of all countries. The bar shows the recommended daily intake. \
+        Light grey displays below the recommended intake, and dark grey \
+        above the recommended intake. The bar shows what the supply for \
+        the country selected is. Green bars are within the daily intake, \
+        red bars are below or above. Sources: \
+        http://healthyeating.sfgate.com/daily-amounts-carbs-fat-fiber-sodium-protein-4230.html, \
+        https://www.healthline.com/nutrition/how-much-sugar-per-day#section3, \
+        https://www.ahealthylife.nl/hoeveel-fruit-per-dag-is-het-gezondst/")
+      .style("font-size", "12px")
+      .style("color", "grey")
+      .append("br");
+    }
 }
-
-// // function to create info on hover
-// function Infobox(d){
-
-//   if (parseFloat(d.measures) > parseFloat(d.ranges[1])){
-//       d3.select("#datainfo")
-//       .append("text")
-//       .attr("class", "data-info")
-//       .attr('x', 100)
-//       .attr('y', 100)
-//       .text("The " + d.title + " supply is above the recommended intake \n")
-//       .style("color", "red")
-//       .append("br");
-//   }
-//   if (parseFloat(d.measures) < parseFloat(d.ranges[0])){
-//       d3.select("#datainfo")
-//       .append("text")
-//       .attr("class", "data-info")
-//       .attr('x', 100)
-//       .attr('y', 100)
-//       .text("The " + d.title + " supply is below the recommended intake \n")
-//       .style("color", "red")
-//       .append("br");
-//   }
-//   else if (parseFloat(d.measures) > parseFloat(d.ranges[0]) && parseFloat(d.measures) < parseFloat(d.ranges[1])) {
-//     d3.select("#datainfo")
-//       .append("text")
-//       .attr("class", "data-info")
-//       .attr('x', 100)
-//       .attr('y', 100)
-//       .text("The " + d.title + " supply is good compared to the recommended intake \n")
-//       .style("color", "green")
-//       .append("br");
-//   }
-  
-//   }
-
-// // function to delete hover info
-// function exit(){
-//   d3.select("#datainfo").select(".data-info")
-//     .remove();
-// }
 
 // function to update bullet
 function UpdateBullet(data, all_food_data) {
@@ -190,7 +161,6 @@ function UpdateBullet(data, all_food_data) {
     .attr('y', 10)
     .text(country);
   
-  
   // update the bullet data with the new data
   d3.select("#bullet").selectAll("svg")
       .data(data)
@@ -201,4 +171,20 @@ function UpdateBullet(data, all_food_data) {
                 return d;
         })
       .call(chart.duration(1000));
+
+  // update the color of the bullet chart
+  d3.select("#bullet").selectAll("svg").select(".measure")
+    .style("fill", function(d){
+      
+      // if the value is between the ranges make the bar green
+      if (parseFloat(d.measures) < parseFloat(d.ranges[1])
+        && parseFloat(d.measures) > parseFloat(d.ranges[0])){
+        return "#74c476" 
+      }
+
+      // else make it red
+      else{
+        return "#ef3b2c"
+      }
+    })
 }

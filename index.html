@@ -3,146 +3,155 @@
     <title>Programmeerproject 2018</title>
     <script src="https://d3js.org/d3.v3.min.js"></script>
     <script src="https://d3js.org/queue.v1.min.js"></script>
-    <script type ="text/javascript" src ="code/scripts/script_index.js"/></script>
-    <script type ="text/javascript" src ="code/javascript/make_barchart.js"/></script>
+    <script src ="code/scripts/script_index.js"/></script>
+    <script src ="code/javascript/make_barchart.js"/></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="code/css/project.css" type="text/css">
   </head>
+  
   <body>
     <div class="jumbotron text-center">
-  <div class="top">
-    <h1> Eating habits </h1>
-    <h5> The effects of food supply on the colorectal cancer occurance</h5>
-  </div> 
-  </div>
-
-   <nav class="navbar navbar-inverse fixed-top">
+      <div class="top">
+        <h1>
+        Eating habits
+      </h1>
+        <h5>
+        The effects of food supply on the colorectal cancer occurance
+      </h5>
+      </div> 
+    </div>
+    <nav class="navbar navbar-inverse fixed-top">
       <div class="container-fluvalue">
         <div class="navbar-header">
           <a class="navbar-brand" href="https://github.com/slanghout/Programmeerproject">Sylvie Langhout</a>
         </div>
         <ul class="nav navbar-nav">
           <li><a href="#">Main</a></li>
-          <li><a href="code/supply.html">Data</a></li>
+          <li><a href="code/html/data.html">Data</a></li>
+          <li><a href="code/html/sources.html">Sources</a></li>
         </ul>
       </div>
-  </nav>
+    </nav>
 
-  <div class="container-fluid">
-   
-  <div class="row">
-  <div class="col-sm-6">
-  <div value="mainInfo">
-    <p style="position: relative; width: 600px; height: 50px;"">
-    Colorectal cancer is the third most common form of cancer, after lung and prostate/breast cancer, and is especially common in the aging population. A healthy diet can decrease the risk of getting colorectal cancer and increase the survival rates (Marshall, 2018).  <br>
-     The graph on the right displays the cancer incidence of colorectal cancer, lung cancer and breast and prostate cancer per 100.00 citizens. You can select a different country if you want to see the cancer incidence for that country.<br>
-    As can be seen, colorectal cancer occurs in neary 30 out of every 100.000 people worldwide. 
-    This <a href="supply.html">data visualization</a> will provide information on where colorectal cancer is high in occurence, and what the eating habits of people in those countries are to see if there is a correlation between a specific type of food and the occurance of colorectal cancer in a country.
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-6">
+          <div value="mainInfo">
+            <p style="position: relative; width: 600px; height: 50px;"">
+              Colorectal cancer is the third most common form of cancer, after lung and prostate/breast cancer, and is especially common in the aging population. A healthy diet can decrease the risk of getting colorectal cancer and increase the survival rates (Marshall, 2018).  <br>
+              The graph on the right displays the cancer incidence of colorectal cancer, lung cancer and breast and prostate cancer per 100.00 citizens. You can select a different country if you want to see the cancer incidence for that country.<br>
+              As can be seen, colorectal cancer occurs in neary 30 out of every 100.000 people worldwide. 
+              This <a href="supply.html">data visualization</a> will provide information on where colorectal cancer is high in occurence, and what the eating habits of people in those countries are to see if there is a correlation between a specific type of food and the occurance of colorectal cancer in a country.
 
-    <!-- Marshall, J. R. (2008). Prevention of colorectal cancer: diet, chemoprevention, and lifestyle. Gastroenterology Clinics, 37(1), 73-82. -->
-    </p>
-  </div>
-</div>
- <div class="col-sm-6">
-    <div value = "dropdown-menu" class="dropdown" style="position: relative;width: 100px; height: 50px;"">
-     <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
-      Select Country
-    </button>
-    
-    <ul class="dropdown-menu" value="dropdown-menu">
-      <li><a class="dropdown-item" type="button" value="World">World</a></li>
-      <li class="dropdown-submenu">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Australia</a>
-        <ul class="dropdown-menu" value="dropdown-menu">
-      <li><a class="dropdown-item" type="button" value="AUS">Australia</a></li>
-       <li><a class="dropdown-item" type="button" value="NZL">New Zealand</a></li>
-    </ul>
-  </li>
-      <li class="dropdown-submenu">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Europe</a>
-        <ul class="dropdown-menu" value="dropdown-menu">
-        <li><a class="dropdown-item" type="button" value="AUT">Austria</a></li>
-        <li><a class="dropdown-item" type="button" value="BEL">Belgium</a></li>
-        <li><a class="dropdown-item" type="button" value="CZE">Czech Republic</a></li>
-        <li><a class="dropdown-item" type="button" value="DNK">Denmark</a></li>
-        <li><a class="dropdown-item" type="button" value="FIN">Finland</a></li>
-        <li><a class="dropdown-item" type="button" value="FRA">France</a></li>
-        <li><a class="dropdown-item" type="button" value="DEU">Germany</a></li>
-        <li><a class="dropdown-item" type="button" value="GRC">Greece</a></li>
-        <li><a class="dropdown-item" type="button" value="HUN">Hungary</a></li>
-        <li><a class="dropdown-item" type="button" value="ISL">Iceland</a></li>
-        <li><a class="dropdown-item" type="button" value="IRL">Ireland</a></li>
-        <li><a class="dropdown-item" type="button" value="ITA">Italy</a></li>
-        <li><a class="dropdown-item" type="button" value="LUX">Luxemburg</a></li>
-        <li><a class="dropdown-item" type="button" value="NLD">Netherlands</a></li>
-        <li><a class="dropdown-item" type="button" value="NOR">Norway</a></li>
-        <li><a class="dropdown-item" type="button" value="POL">Poland</a></li>
-        <li><a class="dropdown-item" type="button" value="PRT">Portugal</a></li>
-        <li><a class="dropdown-item" type="button" value="SVK">Slovak Republic</a></li>
-        <li><a class="dropdown-item" type="button" value="ESP">Spain</a></li>
-        <li><a class="dropdown-item" type="button" value="SWE">Sweden</a></li>
-        <li><a class="dropdown-item" type="button" value="CHE">Switserland</a></li>
-        <li><a class="dropdown-item" type="button" value="LVA">Latvia</a></li>
-        <li><a class="dropdown-item" type="button" value="LTU">Lithuania</a></li>
-         <li><a class="dropdown-item" type="button" value="RUS">Russia</a></li>
-         <li><a class="dropdown-item" type="button" value="GBR">United Kingdom</a></li>
-         <li><a class="dropdown-item" type="button" value="EST">Estonia</a></li>
-      </ul>
-        <li class="dropdown-submenu">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">North America</a>
-        <ul class="dropdown-menu" value="dropdown-menu">
-        <li><a class="dropdown-item" type="button" value="CAN">Canada</a></li>
-        <li><a class="dropdown-item" type="button" value="MEX">Mexico</a></li>
-        <li><a class="dropdown-item" type="button" value="USA">United States</a></li>
-      </ul>
-    </li>
-      <li class="dropdown-submenu">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Asia</a>
-        <ul class="dropdown-menu" value="dropdown-menu">
-        <li><a class="dropdown-item" type="button" value="JPN">Japan</a></li>
-        <li><a class="dropdown-item" type="button" value="KOR">Korea</a></li>
-        <li><a class="dropdown-item" type="button" value="TUR">Turkey</a></li>
-        <li><a class="dropdown-item" type="button" value="IND">India</a></li>
-        <li><a class="dropdown-item" type="button" value="IDN">Indonesia</a></li>
-        <li><a class="dropdown-item" type="button" value="CHN">China</a></li>
-        <li><a class="dropdown-item" type="button" value="ISR">Israel</a></li>
-      </ul>
-    </li>
-         <li class="dropdown-submenu">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Africa</a>
-        <ul class="dropdown-menu" value="dropdown-menu">
-          <li><a class="dropdown-item" type="button" value="ZAF">South Africa</a></li>
-        </ul>
-      </li>
-        <li class="dropdown-submenu">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">South America</a>
-        <ul class="dropdown-menu" value="dropdown-menu">
-          <li><a class="dropdown-item" type="button" value="BRA">Brazil</a></li>
-        <li><a class="dropdown-item" type="button" value="CHL">Chile</a></li>
-        <li><a class="dropdown-item" type="button" value="SVN">Slovenia</a></li>
-        <li><a class="dropdown-item" type="button" value="COL">Colombia</a></li>
-        <li><a class="dropdown-item" type="button" value="CRI">Costa Rica</a></li>
-        </ul>
-      </li>
-      </ul>
-    </div>
+              <!-- Marshall, J. R. (2008). Prevention of colorectal cancer: diet, chemoprevention, and lifestyle. Gastroenterology Clinics, 37(1), 73-82. -->
+            </p>
+          </div>
+        </div>
+
+        <div class="col-sm-6">
+          <div value = "dropdown-menu" class="dropdown" style="position: relative;width: 100px; height: 50px;"">
+            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
+              Select Country
+            </button>
+            <ul class="dropdown-menu" value="dropdown-menu">
+              <li><a class="dropdown-item" type="button" value="World">World</a></li>
+              <li class="dropdown-submenu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Australia</a>
+                <ul class="dropdown-menu" value="dropdown-menu">
+                  <li><a class="dropdown-item" type="button" value="AUS">Australia</a></li>
+                  <li><a class="dropdown-item" type="button" value="NZL">New Zealand</a></li>
+                </ul>
+              </li>
+              <li class="dropdown-submenu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Europe</a>
+                <ul class="dropdown-menu" value="dropdown-menu">
+                  <li><a class="dropdown-item" type="button" value="AUT">Austria</a></li>
+                  <li><a class="dropdown-item" type="button" value="BEL">Belgium</a></li>
+                  <li><a class="dropdown-item" type="button" value="CZE">Czech Republic</a></li>
+                  <li><a class="dropdown-item" type="button" value="DNK">Denmark</a></li>
+                  <li><a class="dropdown-item" type="button" value="FIN">Finland</a></li>
+                  <li><a class="dropdown-item" type="button" value="FRA">France</a></li>
+                  <li><a class="dropdown-item" type="button" value="DEU">Germany</a></li>
+                  <li><a class="dropdown-item" type="button" value="GRC">Greece</a></li>
+                  <li><a class="dropdown-item" type="button" value="HUN">Hungary</a></li>
+                  <li><a class="dropdown-item" type="button" value="ISL">Iceland</a></li>
+                  <li><a class="dropdown-item" type="button" value="IRL">Ireland</a></li>
+                  <li><a class="dropdown-item" type="button" value="ITA">Italy</a></li>
+                  <li><a class="dropdown-item" type="button" value="LUX">Luxemburg</a></li>
+                  <li><a class="dropdown-item" type="button" value="NLD">Netherlands</a></li>
+                  <li><a class="dropdown-item" type="button" value="NOR">Norway</a></li>
+                  <li><a class="dropdown-item" type="button" value="POL">Poland</a></li>
+                  <li><a class="dropdown-item" type="button" value="PRT">Portugal</a></li>
+                  <li><a class="dropdown-item" type="button" value="SVK">Slovak Republic</a></li>
+                  <li><a class="dropdown-item" type="button" value="ESP">Spain</a></li>
+                  <li><a class="dropdown-item" type="button" value="SWE">Sweden</a></li>
+                  <li><a class="dropdown-item" type="button" value="CHE">Switserland</a></li>
+                  <li><a class="dropdown-item" type="button" value="LVA">Latvia</a></li>
+                  <li><a class="dropdown-item" type="button" value="LTU">Lithuania</a></li>
+                  <li><a class="dropdown-item" type="button" value="RUS">Russia</a></li>
+                  <li><a class="dropdown-item" type="button" value="GBR">United Kingdom</a></li>
+                  <li><a class="dropdown-item" type="button" value="EST">Estonia</a></li>
+                </ul>
+              </li>
+              <li class="dropdown-submenu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">North America</a>
+                <ul class="dropdown-menu" value="dropdown-menu">
+                  <li><a class="dropdown-item" type="button" value="CAN">Canada</a></li>
+                  <li><a class="dropdown-item" type="button" value="MEX">Mexico</a></li>
+                  <li><a class="dropdown-item" type="button" value="USA">United States</a></li>
+                </ul>
+              </li> 
+              <li class="dropdown-submenu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Asia</a>
+                <ul class="dropdown-menu" value="dropdown-menu">
+                  <li><a class="dropdown-item" type="button" value="JPN">Japan</a></li>
+                  <li><a class="dropdown-item" type="button" value="KOR">Korea</a></li>
+                  <li><a class="dropdown-item" type="button" value="TUR">Turkey</a></li>
+                  <li><a class="dropdown-item" type="button" value="IND">India</a></li>
+                  <li><a class="dropdown-item" type="button" value="IDN">Indonesia</a></li>
+                  <li><a class="dropdown-item" type="button" value="CHN">China</a></li>
+                  <li><a class="dropdown-item" type="button" value="ISR">Israel</a></li>
+                </ul>
+              </li>
+              <li class="dropdown-submenu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Africa</a>
+                <ul class="dropdown-menu" value="dropdown-menu">
+                  <li><a class="dropdown-item" type="button" value="ZAF">South Africa</a></li>
+                </ul>
+              </li>
+              <li class="dropdown-submenu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">South America</a>
+                <ul class="dropdown-menu" value="dropdown-menu">
+                  <li><a class="dropdown-item" type="button" value="BRA">Brazil</a></li>
+                  <li><a class="dropdown-item" type="button" value="CHL">Chile</a></li>
+                  <li><a class="dropdown-item" type="button" value="SVN">Slovenia</a></li>
+                  <li><a class="dropdown-item" type="button" value="COL">Colombia</a></li>
+                  <li><a class="dropdown-item" type="button" value="CRI">Costa Rica</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
   
-    <div id="barchart" style="position: relative; width: 700px; height: 400px;"">
+          <div id="barchart" style="position: relative; width: 700px; height: 400px;"">
+          </div>
+        </div>
+      </div>
+      <br>
+      
+      <div class="row">
+        <div class="jumbotron text-center">
+          <h3>
+          Student Info
+        </h3>
+          <h5>
+            Sylvie Langhout<br>
+            10792368<br>
+            Programmeerproject 2018
+          </h5> 
+        </div>
+      </div>
     </div>
-  </div>
-</div>
-<br>
-<div class="row">
-
-<div class="jumbotron text-center">
-<!--   <h1>Contact</h1>
-  <p>Sylvie Langhout<br>
-  10792368</p>  -->
-</div>
-</div>
-</div>
   </body>
-
 </html>

@@ -1,0 +1,128 @@
+<html>
+  <head>
+    <title>Programmeerproject 2018</title>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script src="https://d3js.org/queue.v1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
+    <script src ="../scripts/script_data.js"/></script>
+    <script src ="../javascript/make_map.js"/></script>
+    <script src ="../javascript/make_scatter.js"/></script>
+    <script src ="../javascript/make_bullet.js"/></script>
+    <script src="../libraries/datamaps.world.min.js"></script>
+    <script src ="../libraries/bullet.js"/></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../css/project.css"
+  </head>
+  
+  <body>
+    <div class="jumbotron text-center">
+      <div class="top">
+        <h1>
+        Data
+      </h1>
+      </div> 
+    </div>
+
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="https://github.com/slanghout/Programmeerproject">Sylvie Langhout</a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li><a href="/index.html">Main</a></li>
+          <li><a href="#">Data</a></li>
+          <li><a href="sources.html">Sources</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-6">
+          <h4 style="position: relative; left: 30px;"">
+            Colorectal Cancer Incidence per 100.000 Citizens
+          </h4>
+          <h5 style="position: relative; left: 30px;"">
+            Select data to display all, male or female incidence in the world map<br>
+            Hover over a country to see the incidence per 100.000 citizens<br>
+            Click on a country to learn more about the food supply of a country
+          </h5>
+          
+          <div class="dropdown" style="position: relative; left: 30px;"">
+            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
+              Select Data
+            </button>
+            <ul class="dropdown-menu" id="dropdown-menu">
+              <li><a class="dropdown-item" value = "0" type="button" id="All">All</a></li>
+              <li><a class="dropdown-item" value = "1" type="button" id="Male">Male</a></li>
+              <li><a class="dropdown-item" value = "2" type="button" id="Female">Female</a></li>
+            </ul>
+          </div>
+
+          <div id="my-map" style="position: relative; width: 700px; height: 400px;"">
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+          <h4 style="position: relative; left: 30px; width: 400px"">
+            Food supply and cancer incidence
+          </h4>
+          <h5 style="position: relative; left: 30px; width: 500px"">
+            This scatterplot displays the daily calorie intake of the different countries against different types of food. The colors of the scatterplot match the colors of the map.<br>
+            Select what food you want to see if there is a correlation between calorie intake, type of food and the colorectal cancer incidence<br>
+            Click on a dot to learn more about the food supply of a country
+          </h5>
+
+          <div class="checkbox"style="position: relative; left: 30px;"">
+            <label class="radio-inline"><input type="radio" value = "Protein" id="Protein" name="optradio" checked>Protein</label>
+            <label class="radio-inline"><input type="radio" value = "Fat" id="Fat" name="optradio" >Fat</label>
+            <label class="radio-inline"><input type="radio" value = "Sugar" id="Sugar" name="optradio">Sugar</label>
+            <label class="radio-inline"><input type="radio" value = "Fruit" id="Fruit" name="optradio">Fruit</label>
+            <label class="radio-inline"><input type="radio" value = "Vegetables" id="Vegetables" name="optradio">Vegetables</label>
+          </div>
+  
+          <div id="scatter" style="position: relative; width: 600px; height: 400px;"">
+          </div>
+        </div>
+      </div>
+      <br>
+
+      <div class="row">
+        <div class="col-sm-8">
+          <br>
+            <div id="info" style="position: relative; width: 200px; height: 30px; left: 90px"">
+            </div>
+            <br>
+            <div id="bullet" style="position: relative; width: 600px; height: 300px;"">
+            </div>
+          </div>
+        <div class="col-sm-4">
+          <div id="datainfo" style="position: relative; width: 300px; height: 400px; top: 100px;"">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div id="information" style="position: relative; width: 600px; height: 100px; left: 100px;"">
+        </div>
+        <br>
+      </div>
+      <br>
+      
+      <div class="row">
+        <div class="jumbotron text-center">
+          <h3>
+            Student Info
+          </h3>
+          <h5>
+            Sylvie Langhout<br>
+            10792368<br>
+            Programmeerproject 2018
+          </h5> 
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
