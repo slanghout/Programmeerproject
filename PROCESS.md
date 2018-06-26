@@ -71,3 +71,8 @@
 - Hover over map shows the bullets
 - Colors of the bullet chart correspond to data
 - Commented and cleaned out code
+
+## Day 17
+- Code function names corrected
+- Commented all my code
+- Created the Sources page and added the sources

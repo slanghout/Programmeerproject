@@ -9,136 +9,192 @@ window.onload = function() {
 
 // load in the needed json files
 queue()
-	.defer(d3.json, '../../data/Food_supply.json')
-	.defer(d3.json, '../../data/patients.json')
-	.defer(d3.json, '../../data/obesity.json')
-	.defer(d3.json, '../../data/deceased.json')
-	.await(MakeMyProject);
+	.defer(d3.json, "../../data/foodSupply.json")
+	.defer(d3.json, "../../data/patients.json")
+	.defer(d3.json, "../../data/obesity.json")
+	.defer(d3.json, "../../data/deceased.json")
+	.await(makeMyProject);
 
 };
-function MakeMyProject(error, Food_supply, patients, obesity, deceased) {
+
+// function to create initial data page
+function makeMyProject(error, foodSupply, patients, obesity, deceased){
   if (error) throw error;
 
-  all_info = [];
-  male_info = [];
-  female_info = [];
+  // create empty datasets for all, male or female data
+  allData = [];
+  maleData = [];
+  femaleData = [];
 
-  data_options = ["All", "Male", "Female"];
-  patients_lenght = patients.length;
+  // determine length of entire dataset
+  length = patients.length;
 
-  for (var element = 0; element < patients_lenght; element ++){
-      if (patients[element].YEA == "2012"){
-        if (patients[element].Measure == "Incidence per 100 000 population"){
-          all_info.push(patients[element]);
-        }
-      }
-    }
+  // iterate over dataset and select data of 2012 for entire population
+  for (var i = 0; i < length; i ++){
+      if (patients[i].YEA == "2012"){
+        if (patients[i].Measure == "Incidence per 100 000 population"){
+          allData.push(patients[i])
+        };
+      };
+    };
 
-    for (var element = 0; element < patients_lenght; element ++){
-      if (patients[element].YEA == "2012"){
-        if (patients[element].Measure == "Incidence per 100 000 females"){
-          female_info.push(patients[element]);
-        }
-      }
-    }
-    for (var element = 0; element < patients_lenght; element ++){
-      if (patients[element].YEA == "2012"){
-        if (patients[element].Measure == "Incidence per 100 000 males"){
-          male_info.push(patients[element]);
-        }
-      }
-    }
+    // iterate over dataset and select data of 2012 for female population
+    for (var i = 0; i < length; i ++){
+      if (patients[i].YEA == "2012"){
+        if (patients[i].Measure == "Incidence per 100 000 females"){
+          femaleData.push(patients[i])
+        };
+      };
+    };
 
-  var data_type = 0
+    // iterate over dataset and select data of 2012 for male population
+    for (var i = 0; i < length; i ++){
+      if (patients[i].YEA == "2012"){
+        if (patients[i].Measure == "Incidence per 100 000 males"){
+          maleData.push(patients[i])
+        };
+      };
+    };
 
-  patient_info = [all_info, male_info, female_info];
+  // set initial datatype at 0 for all data
+  var dataType = 0;
 
-  protein = [];
-  sugar = [];
-  calories = [];
-  fat = [];
-  fruit = [];
-  veggies = [];
-  all_protein = [];
-  all_sugar = [];
-  all_calories = [];
-  all_fat = [];
-  all_fruit = [];
-  all_veggies = [];
+  // create array with datasets of
+  var incidenceData = [allData, maleData, femaleData];
 
-  food_length = Food_supply.length
+  // create empty arrays for the entire data per food type
+  var proteinData = [];
+  var sugarData = [];
+  var caloriesData = [];
+  var fatData = [];
+  var fruitData = [];
+  var veggiesData = [];
+
+  // create empty arrays for only the values of the food type
+  var proteinValue = [];
+  var sugarValue = [];
+  var caloriesValue = [];
+  var fatValue = [];
+  var fruitValue = [];
+  var veggiesValue = [];
+
+  // determine length of the food dataset
+  var foodLength = foodSupply.length;
   
-  for (var element = 0; element < food_length; element ++){
-    if(Food_supply[element].YEA == "2012"){
-      if (Food_supply[element].Variable == "Total fat supply"){
-        fat.push(Food_supply[element])
-        all_fat.push(parseFloat(Food_supply[element].Value));
+  // iterate over the length of the food dataset and select year 2012
+  for (var i = 0; i < foodLength; i ++){
+    if(foodSupply[i].YEA == "2012"){
+      
+      // find and push the data about fat
+      if (foodSupply[i].Variable == "Total fat supply"){
+        fatData.push(foodSupply[i]);
+        fatValue.push(parseFloat(foodSupply[i].Value));
       }
-      else if(Food_supply[element].Variable == "Total protein supply"){
-        protein.push(Food_supply[element])
-        all_protein.push(parseFloat(Food_supply[element].Value));
-      }
-      else if(Food_supply[element].Variable == "Total calories supply"){
-        calories.push(Food_supply[element])
-        all_calories.push(parseFloat(Food_supply[element].Value));
-      }
-      else if(Food_supply[element].Variable == "Sugar supply"){
-        sugar.push(Food_supply[element])
-        all_sugar.push(parseFloat(Food_supply[element].Value));
-      }
-      else if(Food_supply[element].Variable == "Fruits supply"){
-        fruit.push(Food_supply[element])
-        all_fruit.push(parseFloat(Food_supply[element].Value));
-      }
-      else if(Food_supply[element].Variable == "Vegetables supply"){
-        veggies.push(Food_supply[element])
-        all_veggies.push(parseFloat(Food_supply[element].Value));
-      }
-    }
-  }
 
-  var all_food = [calories, protein, fat, sugar, fruit, veggies]
-  var all_food_data = [all_calories, all_protein, all_fat,all_sugar, all_fruit, all_veggies]
+      // find and push the data about protein
+      else if(foodSupply[i].Variable == "Total protein supply"){
+        proteinData.push(foodSupply[i])
+        proteinValue.push(parseFloat(foodSupply[i].Value));
+      }
 
-  MakeMap(patient_info, data_type, all_food, all_food_data);
-  MakeScatter(ScatterData(calories, protein, patient_info[data_type]), all_food, all_food_data, data_type)
+      // find and push the data about calories
+      else if(foodSupply[i].Variable == "Total calories supply"){
+        caloriesData.push(foodSupply[i]);
+        caloriesValue.push(parseFloat(foodSupply[i].Value));
+      }
+
+      // find and push the data about sugar
+      else if(foodSupply[i].Variable == "Sugar supply"){
+        sugarData.push(foodSupply[i]);
+        sugarValue.push(parseFloat(foodSupply[i].Value));
+      }
+
+      // find and push the data about fruit 
+      else if(foodSupply[i].Variable == "Fruits supply"){
+        fruitData.push(foodSupply[i]);
+        fruitValue.push(parseFloat(foodSupply[i].Value));
+      }
+
+      // find and push the data about vegetables
+      else if(foodSupply[i].Variable == "Vegetables supply"){
+        veggiesData.push(foodSupply[i]);
+        veggiesValue.push(parseFloat(foodSupply[i].Value));
+      };
+    };
+  };
+
+  var nrOfCountries = caloriesData.length
+
+  // create datasets with all the values of the food types
+  var foodData = [caloriesData, proteinData, fatData, sugarData,
+    fruitData, veggiesData];
+  var foodValue = [caloriesValue, proteinValue, fatValue,
+    sugarValue, fruitValue, veggiesValue];
+
+  // create initial scatterplot and map with the data
+  makeMap(incidenceData, dataType, foodData, foodValue);
+  makeScatter(scatterData(caloriesData, proteinData, incidenceData[dataType]),
+    foodData, foodValue, dataType);
   
-  var food_selected = protein
-  var food_info = ["Grammes of protein", "per capita per day"]
+  // initial food selected is protein
+  var foodSelected = proteinData;
+  var foodInfo = ["Grammes of protein", "per capita per day"];
 
+  // after dropdown click update scatterplot and map
   d3.selectAll(".dropdown-item").on("click", function(){
-    var value = this.getAttribute("value")
-    data_type = value;
-    UpdateMap(patient_info, data_type, all_food, all_food_data)
-    var scatter_data = ScatterData(calories, food_selected, patient_info[data_type])
-    UpdateScatter(scatter_data, food_info[0], food_info[1] , data_type, all_food, all_food_data);
+    
+    // remember the data selected
+    var value = this.getAttribute("value");
+    dataType = value;
 
-  })
+    // update the map and scatterplot
+    updateMap(incidenceData, dataType, foodData, foodValue);
+    var selectedData = scatterData(caloriesData, foodSelected,
+      incidenceData[dataType]);
+    updateScatter(selectedData, foodInfo[0], foodInfo[1] , dataType,
+        foodData, foodValue);
     
-    d3.selectAll("input[name='optradio']").on("click", function(){
-      var selected = this.getAttribute("value");
-      if (selected == "Fat"){
-        food_selected = fat
-        food_info = ["Grammes of fat", "per capita per day"]
-      }
-      if(selected == "Protein"){
-        food_selected = protein
-        food_info = ["Grammes of protein", "per capita per day"]
-      }
-      if (selected == "Sugar"){
-        food_selected = sugar
-        food_info = ["Kilos of sugar", "per capita per year"]
-      }
-      if(selected == "Fruit"){
-        food_selected = fruit
-        food_info = ["Kilos of fruit", "per capita per year"]
-      }
-      if (selected == "Vegetables"){
-        food_selected = veggies
-        food_info = ["Kilos of vegetables", "per capita per year"]
-      }
-      var this_data = ScatterData(calories, food_selected, patient_info[data_type])
-      UpdateScatter(this_data, food_info[0], food_info[1] , data_type, all_food, all_food_data);
-    })
+  });
     
- }  
+  // after checkbox click update scatterplot and map
+  d3.selectAll("input[name='optradio']").on("click", function(){
+    
+    // determine the food type selected
+    var selected = this.getAttribute("value");
+    
+    // if fat was selected update the food info and selected food to fat
+    if (selected == "Fat"){
+      foodSelected = fatData;
+      foodInfo = ["Grammes of fat", "per capita per day"];
+    }
+
+    // if protein was selected update the food info and selected food to protein
+    if(selected == "Protein"){
+      foodSelected = proteinData;
+      foodInfo = ["Grammes of protein", "per capita per day"];
+    }
+
+    // if sugar was selected update the food info and selected food to sugar
+    if (selected == "Sugar"){
+      foodSelected = sugarData;
+      foodInfo = ["Kilos of sugar", "per capita per year"];
+    }
+    // if fruit was selected update the food info and selected food to fruit
+    if(selected == "Fruit"){
+      foodSelected = fruitData;
+      foodInfo = ["Kilos of fruit", "per capita per year"];
+    }
+
+    // if vegetables was selected update the food info and selected food to veg
+    if (selected == "Vegetables"){
+      foodSelected = veggiesData;
+      foodInfo = ["Kilos of vegetables", "per capita per year"];
+    };
+
+    // update map and scatterplot with the new data
+    var selectedData = scatterData(caloriesData, foodSelected,
+        incidenceData[dataType]);
+    updateScatter(selectedData, foodInfo[0], foodInfo[1] , dataType,
+        foodData, foodValue);
+  });
+};
