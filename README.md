@@ -2,7 +2,7 @@
 
 [My Website](https://slanghout.github.io/Programmeerproject/)
 
-##Eating habbits and Colorectal cancer occurance:
+## Eating habbits and Colorectal cancer occurance:
 
 
 A bad diet is believed to increae the risk of getting colorectal cancer. My data visualisation provides insight in the incidence of colorectal cancer in different countries, and the eating habbits of those countries. By comparing this data, the user gains a full overview of what countries eat and how many people have colorectal cancer in that country and thereby see if countries that eat more or less of the daily recommended intake of a specific type of food have a bigger or smaller risk of getting colorectal cancer.
