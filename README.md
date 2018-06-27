@@ -8,6 +8,8 @@ Sylvie Langhout
 ## Final:
 ![](doc/chart_visualistion_final.jpg)
 
+
+##PLaatjes:
 ![](doc/bullet_chart.png)
 
 ![](doc/main_page.png)
