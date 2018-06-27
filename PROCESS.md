@@ -79,4 +79,4 @@
 
 ##Day 18
 - Created home page text
-- 
+- Created background and css files for all html files

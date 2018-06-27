@@ -114,8 +114,6 @@ function makeBullet(data, foodValue){
         above the recommended intake. The bar shows what the supply for \
         the country selected is. Green bars are within the daily intake, \
         red bars are below or above.") 
-      .style("font-size", "12px")
-      .style("color", "grey")
       .append("br");
 
       // color the bullet

@@ -136,43 +136,31 @@ function makeBarchart(dataset, countryname, countries, cancerFrequency){
 		.text(countryname)
 		.attr('x', 300)
 		.attr('y', 30)
-		.attr('class', 'title')
-		.attr("font-family", "sans-serif")
-   		.attr("font-size", "25px")
-   		.attr("font-style", "italic")
-   		.attr("fill", "black");
+		.attr('class', 'title');
 
    	// create x-axis label lung
    	svg.append("text")
 		.text("Lung")
 		.attr('x', 125)
-		.attr('y', 380)
-		.attr("font-family", "sans-serif")
-   		.attr("fill", "black");
+		.attr('y', 380);
 
    	// create x-axis label colon
    	svg.append("text")
 		.text("Colon")
 		.attr('x', 225)
-		.attr('y', 380)
-		.attr("font-family", "sans-serif")
-   		.attr("fill", "black");
+		.attr('y', 380);
    	
    	// create x-axis label breast
    	svg.append("text")
 		.text("Breast")
 		.attr('x', 325)
-		.attr('y', 380)
-		.attr("font-family", "sans-serif")
-   		.attr("fill", "black");
+		.attr('y', 380);;
    	
    	// create x-axis label prostate
    	svg.append("text")
 		.text("Prostate")
 		.attr('x', 425)
-		.attr('y', 380)
-		.attr("font-family", "sans-serif")
-   		.attr("fill", "black");
+		.attr('y', 380);
 
     // draw the bars of the barchart
     svg.selectAll("rect")

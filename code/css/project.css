@@ -1,16 +1,12 @@
 /* Sylvie Langhout
 * 10792368
 * project.css
-* Style for the website
+* Style for the layout of the entire website
 */
 
-
-.container-fluid {
-    background: url(../../doc/light_grey_trans.jpeg) repeat 0 0;
-}
-body{
-
-	font-family: sans-serif;
+body {
+    font-family: sans-serif;
+    background: url(../../doc/light_grey.png) repeat 0 0;
 }
 
 .jumbotron {
@@ -19,109 +15,6 @@ body{
 
 }
 
-h5{
+h5 {
 	font-style: italic; 
-}
-
-.y-axis path,
-.y-axis line {
-    fill: none;
-    stroke: black;
-    shape-rendering: crispEdges;
-}
-
-.x-axis path,
-.x-axis line {
-    fill: none;
-    stroke: black;
-    shape-rendering: crispEdges;
-}
-
-.y-axis text {
-    font-family: sans-serif;
-    font-size: 11px;
-}
-
-.x-axis text {
-    font-family: sans-serif;
-    font-size: 11px;
-}
-
-.tooltip {
-  position: absolute;
-  width: 200px;
-  height: 28px;
-  pointer-events: none;
-}
-
-.bullet { font: 10px sans-serif; }
-.bullet .marker { stroke: #000; stroke-width: 2px; }
-.bullet .tick line { stroke: #666; stroke-width: .5px; }
-.bullet .range.s0 { fill: #737373; }
-.bullet .range.s1 { fill: #969696; }
-.bullet .range.s2 { fill: #d9d9d9; }
-.bullet .title { font-size: 14px; font-weight: bold; }
-.bullet .subtitle { fill: #999; }
-.bullet .measure-label tspan {
-    fill: black;
-    font-weight: bold;
-    font-size: 18px;
-}
-
-.dropdown-submenu {
-    position: relative;
-}
-
-.dropdown-submenu>.dropdown-menu {
-    top: 0;
-    left: 100%;
-    margin-top: -6px;
-    margin-left: -1px;
-    -webkit-border-radius: 0 6px 6px 6px;
-    -moz-border-radius: 0 6px 6px;
-    border-radius: 0 6px 6px 6px;
-}
-
-.dropdown-submenu:hover>.dropdown-menu {
-    display: block;
-}
-
-.dropdown-submenu>a:after {
-    display: block;
-    content: " ";
-    float: right;
-    width: 0;
-    height: 0;
-    border-color: transparent;
-    border-style: solid;
-    border-width: 5px 0 5px 5px;
-    border-left-color: #ccc;
-    margin-top: 5px;
-    margin-right: -10px;
-}
-
-.dropdown-submenu:hover>a:after {
-    border-left-color: #fff;
-}
-
-.dropdown-submenu.pull-left {
-    float: none;
-}
-
-.dropdown-submenu.pull-left>.dropdown-menu {
-    left: -100%;
-    margin-left: 10px;
-    -webkit-border-radius: 6px 0 6px 6px;
-    -moz-border-radius: 6px 0 6px 6px;
-    border-radius: 6px 0 6px 6px;
-}
-#information{
-    font-style: bold;
-    font-size: 12px;
-    color: grey;
-}
-
-#datainfo{
-    font-style: bold;
-    font-size: 15px;
 }
