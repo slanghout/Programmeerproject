@@ -2,8 +2,7 @@
 
 [My Website](https://slanghout.github.io/Programmeerproject/)
 
-## Eating habbits and Colorectal cancer occurance:
-
+## Eating habbits and Colorectal cancer occurance
 
 A bad diet is believed to increae the risk of getting colorectal cancer. My data visualisation provides insight in the incidence of colorectal cancer in different countries, and the eating habbits of those countries. By comparing this data, the user gains a full overview of what countries eat and how many people have colorectal cancer in that country and thereby see if countries that eat more or less of the daily recommended intake of a specific type of food have a bigger or smaller risk of getting colorectal cancer.
 
@@ -15,6 +14,15 @@ Then, the user can go to the data page to see more about food and colorectal can
 
 After clicking on a country or a dot in the scatterplot, a bullet chart appears with additive data on this country. The user can see if the people in that country eat according to the daily recommended intake for each food type. If the lines in the bar are red they either eat too much or too little, and green means they eat a right amount.
 ![](doc/map_and_scatter.png)
+
+## Copyrigth
+- D3. Released under the BSD 3-Clause "New" or "Revised" License and is copyright 2010-2017 Mike Bostock.
+- Bootstrap. Released under the MIT license and is copyright 2016 Twitter.
+- Jquery. Released under the MIT license.
+- D3 Worldmaps, project by Mark DiMarco. Released under the MIT License.
+- Topojson. Copyright (c) 2012-2016, Michael Bostock
+- Bullet. Released under the GNU General Public License, version 3 and copyright (2018) Mike Bostock.
+- [Background](https://www.toptal.com/designers/subtlepatterns/)
 
 Sylvie Langhout
 10792368
