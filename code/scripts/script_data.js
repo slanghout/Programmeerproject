@@ -5,7 +5,6 @@
 */
 
 window.onload = function() {
-    console.log('Lets GO GO GO!');
 
 // load in the needed json files
 queue()
@@ -123,7 +122,7 @@ function makeMyProject(error, foodSupply, patients, obesity, deceased){
     };
   };
 
-  var nrOfCountries = caloriesData.length
+  var nrOfCountries = caloriesData.length;
 
   // create datasets with all the values of the food types
   var foodData = [caloriesData, proteinData, fatData, sugarData,
@@ -169,24 +168,24 @@ function makeMyProject(error, foodSupply, patients, obesity, deceased){
     }
 
     // if protein was selected update the food info and selected food to protein
-    if(selected == "Protein"){
+    else if(selected == "Protein"){
       foodSelected = proteinData;
       foodInfo = ["Grammes of protein", "per capita per day"];
     }
 
     // if sugar was selected update the food info and selected food to sugar
-    if (selected == "Sugar"){
+    else if (selected == "Sugar"){
       foodSelected = sugarData;
       foodInfo = ["Kilos of sugar", "per capita per year"];
     }
     // if fruit was selected update the food info and selected food to fruit
-    if(selected == "Fruit"){
+    else if(selected == "Fruit"){
       foodSelected = fruitData;
       foodInfo = ["Kilos of fruit", "per capita per year"];
     }
 
     // if vegetables was selected update the food info and selected food to veg
-    if (selected == "Vegetables"){
+    else if (selected == "Vegetables"){
       foodSelected = veggiesData;
       foodInfo = ["Kilos of vegetables", "per capita per year"];
     };

@@ -1,5 +1,13 @@
+<!-- * Sylvie Langhout
+* 10792368
+* data.html
+* HTML code for the data page
+* -->
+
 <html>
   <head>
+    
+    <!-- load the proper files -->
     <title>Programmeerproject 2018</title>
     <script src="https://d3js.org/d3.v3.min.js"></script>
     <script src="https://d3js.org/queue.v1.min.js"></script>
@@ -17,16 +25,22 @@
   </head>
   
   <body>
+
+    <!-- create header at the top -->
     <div class="jumbotron text-center">
       <div class="top">
         <h1>
         Data
       </h1>
+      <h5>
+        The effects of food supply on the colorectal cancer occurance
+      </h5>
       </div> 
     </div>
 
+    <!-- create navigation bar -->
     <nav class="navbar navbar-inverse">
-      <div class="container-fluid">
+      <div class="container-fluvalue">
         <div class="navbar-header">
           <a class="navbar-brand" href="https://github.com/slanghout/Programmeerproject">Sylvie Langhout</a>
         </div>
@@ -38,6 +52,7 @@
       </div>
     </nav>
 
+    <!-- create info about worldmap -->
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-6">
@@ -47,9 +62,11 @@
           <h5 style="position: relative; left: 30px;"">
             Select data to display all, male or female incidence in the world map<br>
             Hover over a country to see the incidence per 100.000 citizens<br>
-            Click on a country to learn more about the food supply of a country
+            Click on a country to learn more about the food supply of a country<br>
           </h5>
           
+          <!-- create dropdown for data worldmap and scatter -->
+          <br>
           <div class="dropdown" style="position: relative; left: 30px;"">
             <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
               Select Data
@@ -61,10 +78,12 @@
             </ul>
           </div>
 
+          <!-- create div for map -->
           <div id="my-map" style="position: relative; width: 700px; height: 400px;"">
             </div>
         </div>
 
+       <!-- create info about scatterplot -->
         <div class="col-sm-6">
           <h4 style="position: relative; left: 30px; width: 400px"">
             Food supply and cancer incidence
@@ -75,6 +94,7 @@
             Click on a dot to learn more about the food supply of a country
           </h5>
 
+          <!-- create checkbox for scatterplot data -->
           <div class="checkbox"style="position: relative; left: 30px;"">
             <label class="radio-inline"><input type="radio" value = "Protein" id="Protein" name="optradio" checked>Protein</label>
             <label class="radio-inline"><input type="radio" value = "Fat" id="Fat" name="optradio" >Fat</label>
@@ -83,12 +103,14 @@
             <label class="radio-inline"><input type="radio" value = "Vegetables" id="Vegetables" name="optradio">Vegetables</label>
           </div>
   
+          <!-- create div for scatterplot -->
           <div id="scatter" style="position: relative; width: 600px; height: 400px;"">
           </div>
         </div>
       </div>
       <br>
 
+      <!-- create bullet -->
       <div class="row">
         <div class="col-sm-8">
           <br>
@@ -104,6 +126,7 @@
         </div>
       </div>
 
+      <!-- create info next to bullet -->
       <div class="row">
         <div id="information" style="position: relative; width: 600px; height: 100px; left: 100px;"">
         </div>
@@ -111,6 +134,7 @@
       </div>
       <br>
       
+      <!-- create header at bottom with student info -->
       <div class="row">
         <div class="jumbotron text-center">
           <h3>

@@ -81,13 +81,13 @@ function makeScatter(dataset, foodData, foodValue, dataType){
 			if(d[2] < 10){
 				return colorscheme[0]
 			}
-			if(d[2] <= 25 && d[2] > 10){
+			else if(d[2] <= 25 && d[2] > 10){
 				return colorscheme[1]
 			}
-			if(d[2] <= 35 && d[2] > 25){
+			else if(d[2] <= 35 && d[2] > 25){
 				return colorscheme[2]
 			}
-			if(d[2] > 35){
+			else if(d[2] > 35){
 				return colorscheme[3]
 			};
 		});
@@ -189,13 +189,13 @@ function updateScatter(dataset, food, unit, dataType, foodData, FoodValue){
 			if(d[2] < 10){
 				return colorscheme[0]
 			}
-			if(d[2] <= 25 && d[2] > 10){
+			else if(d[2] <= 25 && d[2] > 10){
 				return colorscheme[1]
 			}
-			if(d[2] <= 35 && d[2] > 25){
+			else if(d[2] <= 35 && d[2] > 25){
 				return colorscheme[2]
 			}
-			if(d[2] > 35){
+			else if(d[2] > 35){
 				return colorscheme[3]
 			};
 		});
@@ -228,7 +228,7 @@ function updateScatter(dataset, food, unit, dataType, foodData, FoodValue){
 
 	// select the maximum of the dataset and decide maxumum for x-axis
 	var minX = d3.min(dataset, function(d) { return d[0]; });
-	minXUp = Math.floor(minX / 100.0) * 100;
+	var minXUp = Math.floor(minX / 100.0) * 100;
 
 	// create the x-scale with width height and min and max
 	var xScale = d3.scale.linear()
@@ -271,14 +271,14 @@ function selectColorscheme(dataType){
 	}
 
 	// if datatype is 1, male is chosen color blue
-	if (dataType == 1){
+	else if (dataType == 1){
 		var color_low = "#bdd7e7";
 		var color_medium = "#6baed6";
 		var color_high = "#3182bd";
 		var color_highest = "#08519c";
 	}
 	// if datatype is 2, female is chosen color red
-	if (dataType == 2){
+	else if (dataType == 2){
 		var color_low = "#fcae91";
 		var color_medium = "#fb6a4a";
 		var color_high = "#de2d26";

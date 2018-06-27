@@ -1,5 +1,13 @@
+<!-- * Sylvie Langhout
+* 10792368
+* index.html
+* HTML code for the home page
+* -->
+
 <html>
   <head>
+    
+    <!-- load the proper files -->
     <title>Programmeerproject 2018</title>
     <script src="https://d3js.org/d3.v3.min.js"></script>
     <script src="https://d3js.org/queue.v1.min.js"></script>
@@ -12,16 +20,20 @@
   </head>
   
   <body>
+    
+    <!-- create header at the top -->
     <div class="jumbotron text-center">
       <div class="top">
         <h1>
-        Eating habits
+        Main
       </h1>
         <h5>
         The effects of food supply on the colorectal cancer occurance
       </h5>
       </div> 
     </div>
+
+    <!-- create navigation bar -->
     <nav class="navbar navbar-inverse fixed-top">
       <div class="container-fluvalue">
         <div class="navbar-header">
@@ -35,19 +47,24 @@
       </div>
     </nav>
 
+    <!-- create background for the problem -->
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-6">
           <div value="mainInfo">
-            <p style="position: relative; width: 600px; height: 50px;"">
-              Colorectal cancer is the third most common form of cancer, after lung and prostate/breast cancer, and is especially common in the aging population. A healthy diet can decrease the risk of getting colorectal cancer and increase the survival rates (Marshall, 2018).  <br>
-              The graph on the right displays the cancer incidence of colorectal cancer, lung cancer and breast and prostate cancer per 100.00 citizens. You can select a different country if you want to see the cancer incidence for that country.<br>
-              As can be seen, colorectal cancer occurs in neary 30 out of every 100.000 people worldwide. 
-              This <a href="supply.html">data visualization</a> will provide information on where colorectal cancer is high in occurence, and what the eating habits of people in those countries are to see if there is a correlation between a specific type of food and the occurance of colorectal cancer in a country.
+            <h3 style="position: relative; width: 600px; height: 50px; left: 30px; top: 50px;"">
+              Background
+            </h3>
+            <p style="position: relative; width: 600px; height: 50px; left: 50px; top: 50px"">
+              Colorectal cancer is the third most common form of cancer, after lung and prostate/breast cancer, and is especially common in the aging population. Studies have suggested that a healthy diet can decrease the risk of getting colorectal cancer and increase the survival rates (Marshall, 2018).  <br>
+              The graph on the right displays the cancer incidence of colorectal cancer, lung cancer and breast and prostate cancer per 100.00 citizens. You can select a different country if you want to see the cancer incidence for that country and hover over the graph to see the exact number. <br>
+              As can be seen, colorectal cancer occurs in nearly 30 out of every 100.000 people worldwide. 
+              This <a href="code/html/data.html">data visualization</a> will provide information on where colorectal cancer is high in occurrence, and what the eating habits of people in those countries are to see if there is in fact a correlation between the diet of a country and the occurrence of colorectal cancer.<br>
             </p>
           </div>
         </div>
 
+        <!-- create dropdown menu for barchart data -->
         <div class="col-sm-6">
           <div value = "dropdown-menu" class="dropdown" style="position: relative;width: 100px; height: 50px;"">
             <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
@@ -132,12 +149,14 @@
             </ul>
           </div>
   
+          <!-- create barchart div -->
           <div id="barchart" style="position: relative; width: 700px; height: 400px;"">
           </div>
         </div>
       </div>
       <br>
       
+      <!-- create header at bottom with student info -->
       <div class="row">
         <div class="jumbotron text-center">
           <h3>

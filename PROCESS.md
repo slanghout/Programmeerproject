@@ -76,3 +76,7 @@
 - Code function names corrected
 - Commented all my code
 - Created the Sources page and added the sources
+
+##Day 18
+- Created home page text
+- 

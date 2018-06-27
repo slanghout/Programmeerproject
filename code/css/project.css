@@ -4,6 +4,10 @@
 * Style for the website
 */
 
+
+.container-fluid {
+    background: url(../../doc/light_grey_trans.jpeg) repeat 0 0;
+}
 body{
 
 	font-family: sans-serif;

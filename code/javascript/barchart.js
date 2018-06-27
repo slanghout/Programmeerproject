@@ -24,20 +24,20 @@ function barData(countries, allCancers, cancerFrequency){
 	  					var value = parseFloat(allCancers[j].Value).toFixed(1);
 	  					cancerFrequency[i][0] = parseFloat(value);
 	  				}
-	  				if(allCancers[j].Variable == "Malignant neoplasms of colon"
+	  				else if(allCancers[j].Variable == "Malignant neoplasms of colon"
 	  					&& allCancers[j].Measure ==
 	  					"Incidence per 100 000 population"){
 	  					var value = parseFloat(allCancers[j].Value).toFixed(1);
 	  					cancerFrequency[i][1] = parseFloat(value);
 	  				}
-	  				if(allCancers[j].Variable ==
+	  				else if(allCancers[j].Variable ==
 	  					"Malignant neoplasms of female breast"
 	  					&& allCancers[j].Measure ==
 	  					"Incidence per 100 000 females"){
 	  					var value = parseFloat(allCancers[j].Value).toFixed(1);
 	  					cancerFrequency[i][2] = parseFloat(value);
 	  				}
-	  				if(allCancers[j].Variable ==
+	  				else if(allCancers[j].Variable ==
 	  					"Malignant neoplasms of prostate"
 	  					&& allCancers[j].Measure ==
 	  					"Incidence per 100 000 males"){
@@ -138,7 +138,8 @@ function makeBarchart(dataset, countryname, countries, cancerFrequency){
 		.attr('y', 30)
 		.attr('class', 'title')
 		.attr("font-family", "sans-serif")
-   		.attr("font-size", "30px")
+   		.attr("font-size", "25px")
+   		.attr("font-style", "italic")
    		.attr("fill", "black");
 
    	// create x-axis label lung

@@ -1,8 +1,5 @@
 window.onload = function() {
 
-  console.log('Lets GO GO GO!');
-
-
 // Load data of all cancer types
 queue()
 	.defer(d3.json, 'data/allCancers.json')

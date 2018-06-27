@@ -13,10 +13,10 @@ function mapData(incidenceData, x){
     // iterate over the length of the data
     // create dict with value and fillkey for legend
     for (var i = 0; i < incidenceData[x].length; i ++)
-	{
-        if (incidenceData[x][i].Value <= 10){
-    	  country = incidenceData[x][i].COU;
-    	  data[country] = {fillKey: "<10", value: incidenceData[x][i].Value};
+	 {
+      if (incidenceData[x][i].Value <= 10){
+    	 country = incidenceData[x][i].COU;
+    	 data[country] = {fillKey: "<10", value: incidenceData[x][i].Value};
     	}
     	else if (incidenceData[x][i].Value <= 25
             && incidenceData[x][i].Value > 10){
@@ -91,56 +91,55 @@ function makeMap(incidenceData, dataType, foodData, foodValue) {
         data: data,
          done: function(datamap){
 				 
-                 // after clicking on a country create bullet chart
-                 datamap.svg.selectAll(".datamaps-subunit")
-                    .on("click", function(geography){
-					
-                    // select the data for the country clicked on
-                    for (var i = 0; i < nrOfCountries; i++){
-						if (foodData[0][i].COU == geography.id){
-							var data = [foodData[0][i].Value,
-                            foodData[1][i].Value, foodData[2][i].Value,
-                            foodData[3][i].Value, foodData[4][i].Value,
-                            foodData[5][i].Value, foodData[0][i].Country];
-						};
-					};
+           // after clicking on a country create bullet chart
+           datamap.svg.selectAll(".datamaps-subunit")
+              .on("click", function(geography){
+		
+              // select the data for the country clicked on
+              for (var i = 0; i < nrOfCountries; i++){
+			          if (foodData[0][i].COU == geography.id){
+				              var data = [foodData[0][i].Value,
+                      foodData[1][i].Value, foodData[2][i].Value,
+                      foodData[3][i].Value, foodData[4][i].Value,
+                      foodData[5][i].Value, foodData[0][i].Country];
+			          };
+		          };
                     // if there is no bullet chart yet create new one
-    				if (d3.select("#bullet")
-                        .selectAll("svg")[0].length == 0){
-                            makeBullet(data, foodValue);
-                    }
+    				  if (d3.select("#bullet")
+                  .selectAll("svg")[0].length == 0){
+                      makeBullet(data, foodValue);
+              }
 
                     // if there is a bullet chart already update it
-                    else if (d3.select("#bullet")
-                        .selectAll("svg")[0].length != 0){
-                            updateBullet(data, foodValue);
-                    };	 	
+              else if (d3.select("#bullet")
+                      .selectAll("svg")[0].length != 0){
+                        updateBullet(data, foodValue);
+              };	 	
 				})
 			 },
          geographyConfig: {
             popupTemplate: function LightUp(geo, data) {
             	if (!data){
-					 return ['<div class="hoverinfo"><strong>',
-									 'There is no data available for '
-                                     + geo.properties.name,
-									 '</strong></div>'].join('');
-				}
-                return ['<div class="hoverinfo"><strong>',
-                        'In ' + geo.properties.name,
-                        ' cancer incidence per 100.000 citizens is: '
-                        + data.value,
-                        '</strong></div>'].join('');
+      					 return ['<div class="hoverinfo"><strong>',
+        									 'There is no data available for '
+                            + geo.properties.name,
+        									 '</strong></div>'].join('');
+				      }
+              return ['<div class="hoverinfo"><strong>',
+                      'In ' + geo.properties.name,
+                      ' cancer incidence per 100.000 citizens is: '
+                      + data.value,
+                      '</strong></div>'].join('');
             },
             popOnHover: true,
             highlightOnHover: true,
             highlightFillColor: function(geo) {return geo["fillKey"]
                 || "#edf8e9"; },
             highlightBorderColor: "white",
-       		highlightBorderWidth: "4",
-        	highlightBorderOpacity: "1"
-            
+       		  highlightBorderWidth: "4",
+        	  highlightBorderOpacity: "1"        
         }
-        });
+  });
 
   // call function to show dot corresponding to country
   showDot();
@@ -161,7 +160,7 @@ function updateMap(incidenceData, dataType, foodData, foodValue){
 // function to remove any prior map
 function removeMap(){
 	d3.select(".datamaps-legend").remove();
-    d3.select("#my-map").select("svg").remove();
+  d3.select("#my-map").select("svg").remove();
 
 };
 

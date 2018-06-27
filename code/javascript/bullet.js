@@ -182,7 +182,7 @@ function setBounds(data, x){
 // function to color the bullet chart measures
 function colorBullet(){
   d3.select("#bullet").selectAll("svg").select(".measure")
-    .style("opacity", 0.6)
+    .style("opacity", 0.7)
     .style("fill", function(d){
       
       // if the value is between the ranges make the bar green
