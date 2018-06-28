@@ -105,8 +105,6 @@ function makeBullet(data, foodValue){
     d3.select("#datainfo")
       .append("text")
       .attr("class", "infobox")
-      .attr('x', 100)
-      .attr('y', 50)
       .text("This bullet chart shows the food supply of different \
         food types. The black vertical lines display the minimum and \
         maxiumum values per food type over all the countries. \
