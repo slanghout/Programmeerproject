@@ -108,12 +108,15 @@ function makeBullet(data, foodValue){
       .attr('x', 100)
       .attr('y', 50)
       .text("This bullet chart shows the food supply of different \
-        food types. The black lines display the minimum and maxiumum \
-        of all countries. The bar shows the recommended daily intake. \
+        food types. The black vertical lines display the minimum and \
+        maxiumum values per food type over all the countries. \
+        The grey shades of the bar show the recommended daily intake. \
         Light grey displays below the recommended intake, and dark grey \
-        above the recommended intake. The bar shows what the supply for \
-        the country selected is. Green bars are within the daily intake, \
-        red bars are below or above.") 
+        above the recommended intake. Medium grey is within the recommended \
+        daily intake. The red/green bar shows what the value\
+        for the selected country is. If the bar is green, the value is within \
+        the recommended daily intake, if the bar is red the value is below \
+        or above the recommended daily intake.") 
       .append("br");
 
       // color the bullet

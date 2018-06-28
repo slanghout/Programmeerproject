@@ -94,6 +94,11 @@ function makeMap(incidenceData, dataType, foodData, foodValue) {
            // after clicking on a country create bullet chart
            datamap.svg.selectAll(".datamaps-subunit")
               .on("click", function(geography){
+
+                // automatically scroll down to the bullet
+                $('html,body').animate({
+                scrollTop: $("#bullet").offset().top},
+                'slow');
 		
               // select the data for the country clicked on
               for (var i = 0; i < nrOfCountries; i++){

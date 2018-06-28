@@ -98,6 +98,11 @@ function makeScatter(dataset, foodData, foodValue, dataType){
     	.on("mouseout", hoverOut)
     	.on("click", function(d){
 			
+    		// automatically scroll down to the bullet
+            $('html,body').animate({
+            scrollTop: $("#bullet").offset().top},
+            'slow');
+
     		// iterate over countries and select data of the selected country
 			for (var i = 0; i < nrOfCountries; i++){
 				if (foodData[0][i].COU == d[3]){

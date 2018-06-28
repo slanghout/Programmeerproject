@@ -31,3 +31,7 @@ Libraries:
 - D3
 
 The hardest part will be to nicely display everything without it being too full. Maybe not display everything at once/ make some graphs appear and disappear. 
+
+## Final
+
+![](doc/chart_visualistion_final.png)
