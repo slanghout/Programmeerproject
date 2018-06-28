@@ -16,12 +16,12 @@ After clicking on a country or a dot in the scatterplot, a bullet chart appears 
 ![](doc/map_and_scatter.png)
 
 ## Copyrigth
-- D3. Released under the BSD 3-Clause "New" or "Revised" License and is copyright 2010-2017 Mike Bostock.
-- Bootstrap. Released under the MIT license and is copyright 2016 Twitter.
+- D3. Released under the BSD 3-Clause "New" or "Revised" License and is Copyright (2010-2017) Mike Bostock.
+- Bootstrap. Released under the MIT license and is Copyright (2016) Twitter and Copyright (2011-2018) Bootstrap Authors.
 - Jquery. Released under the MIT license.
-- D3 Worldmaps, project by Mark DiMarco. Released under the MIT License.
+- D3 Worldmaps, Copyright (2012) Mark DiMarco. Released under the MIT License.
 - Topojson. Copyright (c) 2012-2016, Michael Bostock
-- Bullet. Released under the GNU General Public License, version 3 and copyright (2018) Mike Bostock.
+- Bullet. Released under the GNU General Public License, version 3 and Copyright (2018) Mike Bostock.
 - [Background](https://www.toptal.com/designers/subtlepatterns/)
 
 Sylvie Langhout
