@@ -10,14 +10,12 @@ window.onload = function() {
 queue()
 	.defer(d3.json, "../../data/foodSupply.json")
 	.defer(d3.json, "../../data/patients.json")
-	.defer(d3.json, "../../data/obesity.json")
-	.defer(d3.json, "../../data/deceased.json")
 	.await(makeMyProject);
 
 };
 
 // function to create initial data page
-function makeMyProject(error, foodSupply, patients, obesity, deceased){
+function makeMyProject(error, foodSupply, patients){
   if (error) throw error;
 
   // create empty datasets for all, male or female data
