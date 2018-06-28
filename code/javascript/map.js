@@ -94,11 +94,6 @@ function makeMap(incidenceData, dataType, foodData, foodValue) {
            // after clicking on a country create bullet chart
            datamap.svg.selectAll(".datamaps-subunit")
               .on("click", function(geography){
-
-                // automatically scroll down to the bullet
-                $('html,body').animate({
-                scrollTop: $("#bullet").offset().top},
-                'slow');
 		
               // select the data for the country clicked on
               for (var i = 0; i < nrOfCountries; i++){
@@ -107,7 +102,12 @@ function makeMap(incidenceData, dataType, foodData, foodValue) {
                       foodData[1][i].Value, foodData[2][i].Value,
                       foodData[3][i].Value, foodData[4][i].Value,
                       foodData[5][i].Value, foodData[0][i].Country];
-			          };
+
+                      // automatically scroll down to the bullet
+                      $('html,body').animate({
+                      scrollTop: $("#bullet").offset().top},
+                      'slow');
+			                 };
 		          };
                     // if there is no bullet chart yet create new one
     				  if (d3.select("#bullet")

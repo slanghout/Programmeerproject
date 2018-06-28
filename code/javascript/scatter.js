@@ -97,7 +97,7 @@ function makeScatter(dataset, foodData, foodValue, dataType){
 		.on("mouseover", hoverFunction)   		
     	.on("mouseout", hoverOut)
     	.on("click", function(d){
-			
+
     		// automatically scroll down to the bullet
             $('html,body').animate({
             scrollTop: $("#bullet").offset().top},
@@ -109,8 +109,8 @@ function makeScatter(dataset, foodData, foodValue, dataType){
 					var data = [foodData[0][i].Value, foodData[1][i].Value,
 						foodData[2][i].Value, foodData[3][i].Value,
 						foodData[4][i].Value,foodData[5][i].Value,
-						foodData[0][i].Country]
-				}
+						foodData[0][i].Country];
+				};
 			};
 
 			// if there is no buller chart yet draw it
