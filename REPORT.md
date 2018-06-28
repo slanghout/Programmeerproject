@@ -1,9 +1,7 @@
 # Report Programmeerproject 2018
-Sylvie Langhout
-
+*Sylvie Langhout
 10792368
-
-28/06/2018
+28/06/2018*
 
 ## Description of the Application
 
